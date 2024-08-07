@@ -7,6 +7,7 @@ import { ApplicationModule } from './application/application.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { RouterModule } from '@angular/router';
 import { ApplicationRoutingModule } from './application/application-routing.module';
+import { TemplateModule } from './template/template.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ApplicationRoutingModule } from './application/application-routing.modu
     AppRoutingModule,
     ApplicationModule,
     AuthenticationModule,
+    TemplateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
