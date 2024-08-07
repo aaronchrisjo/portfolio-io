@@ -11,6 +11,7 @@ export class AllTemplatesComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   selectedFilter: string = 'all';
+  selectedProduct: Product | null = null;
 
   constructor(private productService: ProductService) {}
 
@@ -28,5 +29,13 @@ export class AllTemplatesComponent implements OnInit {
     } else {
       this.filteredProducts = this.products.filter(product => product.category === filter);
     }
+  }
+
+  openModal(product: Product): void {
+    this.selectedProduct = product;
+  }
+
+  closeModal(): void {
+    this.selectedProduct = null;
   }
 }

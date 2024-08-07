@@ -1,0 +1,9 @@
+
+/* Add styles for the overlay and modal */
+.fixed {
+    position: fixed;
+  }
+  .bg-opacity-50 {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
