@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { TemplateRoutingModule } from './template-routing.module';
 import { ExploreComponent } from './explore/explore.component';
+import { AllTemplatesComponent } from './all-templates/all-templates.component';
 
 
 @NgModule({
   declarations: [
-    ExploreComponent
+    ExploreComponent,
+    AllTemplatesComponent
   ],
   imports: [
     CommonModule,

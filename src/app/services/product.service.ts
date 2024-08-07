@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../interfaces/product';
 import { Observable, of } from 'rxjs';
+import { Product } from '../interfaces/product';
 
 @Injectable({
   providedIn: 'root'
@@ -9,29 +9,32 @@ export class ProductService {
   private products: Product[] = [
     {
       id: 1,
-      name: 'Template One',
-      description: 'A sleek and modern template to showcase your work beautifully. Ideal for professionals and creatives.',
+      name: 'Angular Template 1',
+      description: 'A sleek and modern Angular template.',
       imageUrl: 'assets/products/sample-product-01.png',
-      detailsUrl: '#'
+      detailsUrl: '#',
+      category: 'angular'
     },
     {
       id: 2,
-      name: 'Template Two',
-      description: 'A versatile template with a clean design, perfect for showcasing portfolios and personal projects.',
+      name: 'React Template 1',
+      description: 'A versatile React template.',
       imageUrl: 'assets/products/sample-product-02.png',
-      detailsUrl: '#'
+      detailsUrl: '#',
+      category: 'react'
     },
     {
       id: 3,
-      name: 'Template Three',
-      description: 'A creative template with dynamic features, ideal for designers and artists looking to make a statement.',
+      name: 'HTML Template 1',
+      description: 'A creative HTML template.',
       imageUrl: 'assets/products/sample-product-03.png',
-      detailsUrl: '#'
+      detailsUrl: '#',
+      category: 'html'
     }
-    // Add more products as needed
+    // Add more products
   ];
 
-  getProducts(): Observable<Product[]>{
+  getProducts(): Observable<Product[]> {
     return of(this.products);
   }
 }
