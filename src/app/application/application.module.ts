@@ -16,7 +16,7 @@ import { AboutComponent } from './about/about.component';
     CommonModule
   ],
   exports:[
-    HeaderComponent
+    HeaderComponent,
   ]
 })
 export class ApplicationModule { }
