@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Database, ref, set } from '@angular/fire/database';
+import { Storage, ref as storageRef, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-upload-template',
@@ -7,6 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./upload-template.component.css']
 })
 export class UploadTemplateComponent {
+  private db: Database = inject(Database);
+  private storage: Storage = inject(Storage);
   productForm: FormGroup;
   selectedFile: File | null = null;
   imagePreviewUrl: string | ArrayBuffer | null = null;
@@ -32,11 +37,36 @@ export class UploadTemplateComponent {
     }
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.productForm.valid && this.selectedFile) {
       const { name, description, detailsUrl, category } = this.productForm.value;
-      console.log('Form Submitted!', { name, description, detailsUrl, category, image: this.selectedFile });
-      // You would typically handle file upload and form submission here
+
+      // Upload the image to Firebase Storage
+      const storageRefPath = `images/${this.selectedFile.name}`;
+      const fileRef = storageRef(this.storage, storageRefPath);
+      const uploadTask = uploadBytesResumable(fileRef, this.selectedFile);
+
+      // Wait for the upload to complete
+      try {
+        await uploadTask;
+        // Get download URL
+        const imageUrl = await getDownloadURL(fileRef);
+
+        // Save the product data to Realtime Database
+        const productData = {
+          name,
+          description,
+          imageUrl,
+          detailsUrl,
+          category
+        };
+        const productRef = ref(this.db, 'products');  // Save under "products" node
+        await set(productRef, productData);
+
+        console.log('Product submitted successfully!');
+      } catch (error) {
+        console.error('Upload failed:', error);
+      }
     } else {
       console.error('Form is invalid or no file selected');
     }
