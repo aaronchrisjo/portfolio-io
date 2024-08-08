@@ -5,17 +5,21 @@ import { TemplateRoutingModule } from './template-routing.module';
 import { ExploreComponent } from './explore/explore.component';
 import { AllTemplatesComponent } from './all-templates/all-templates.component';
 import { DetailsComponent } from './details/details.component';
+import { UploadTemplateComponent } from './upload-template/upload-template.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     ExploreComponent,
     AllTemplatesComponent,
-    DetailsComponent
+    DetailsComponent,
+    UploadTemplateComponent
   ],
   imports: [
     CommonModule,
-    TemplateRoutingModule
+    TemplateRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class TemplateModule { }
