@@ -9,11 +9,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { firebaseConfig } from '../../environments/firebaseConfig';
 import { AuthService } from '../services/auth.service';
 import { appConfig } from '../app.config';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
   declarations: [
-    SignupComponent
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
