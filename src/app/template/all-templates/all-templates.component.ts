@@ -3,7 +3,7 @@ import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
 
 @Component({
-  selector: 'app-all-templates',
+  selector: 'app-your-component',
   templateUrl: './all-templates.component.html',
   styleUrls: ['./all-templates.component.css']
 })
@@ -18,24 +18,22 @@ export class AllTemplatesComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => {
       this.products = products;
-      this.filterProducts(this.selectedFilter);
+      this.filterProducts(this.selectedFilter); // Apply initial filter
     });
   }
 
-  filterProducts(filter: string): void {
-    this.selectedFilter = filter;
-    if (filter === 'all') {
-      this.filteredProducts = this.products;
-    } else {
-      this.filteredProducts = this.products.filter(product => product.category === filter);
-    }
+  filterProducts(category: string): void {
+    this.selectedFilter = category;
+    this.filteredProducts = category === 'all' ? this.products : this.products.filter(product => product.category === category);
   }
 
   openModal(product: Product): void {
     this.selectedProduct = product;
+    // Your modal opening logic
   }
 
   closeModal(): void {
     this.selectedProduct = null;
+    // Your modal closing logic
   }
 }

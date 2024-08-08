@@ -20,6 +20,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     TemplateRoutingModule,
     ReactiveFormsModule
+  ],
+  exports:[
+    AllTemplatesComponent
   ]
 })
 export class TemplateModule { }

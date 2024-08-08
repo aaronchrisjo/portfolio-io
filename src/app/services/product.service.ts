@@ -1,40 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Database, ref, get, DatabaseReference } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private products: Product[] = [
-    {
-      id: 1,
-      name: 'Angular Template 1',
-      description: 'A sleek and modern Angular template.',
-      imageUrl: 'assets/products/sample-product-01.png',
-      detailsUrl: '#',
-      category: 'angular'
-    },
-    {
-      id: 2,
-      name: 'React Template 1',
-      description: 'A versatile React template.',
-      imageUrl: 'assets/products/sample-product-02.png',
-      detailsUrl: '#',
-      category: 'react'
-    },
-    {
-      id: 3,
-      name: 'HTML Template 1',
-      description: 'A creative HTML template.',
-      imageUrl: 'assets/products/sample-product-03.png',
-      detailsUrl: '#',
-      category: 'html'
-    }
-    // Add more products
-  ];
+  private productsRef: DatabaseReference;
+
+  constructor(private db: Database) {
+    // Initialize productsRef after db is initialized
+    this.productsRef = ref(this.db, 'products');
+  }
 
   getProducts(): Observable<Product[]> {
-    return of(this.products);
+    return new Observable(observer => {
+      get(this.productsRef).then(snapshot => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const products: Product[] = Object.keys(data).map(key => ({
+            id: +data[key].id, // Convert ID to number if necessary
+            name: data[key].name,
+            description: data[key].description,
+            imageUrl: data[key].imageUrl,
+            detailsUrl: data[key].detailsUrl,
+            category: data[key].category
+          }));
+          observer.next(products);
+        } else {
+          observer.next([]);
+        }
+        observer.complete();
+      }).catch(error => {
+        console.error('Error fetching products:', error);
+        observer.error(error);
+      });
+    });
   }
 }

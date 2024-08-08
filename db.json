@@ -1,0 +1,12 @@
+{
+    "products": {
+      "product1": { 
+        "category": "react",
+        "description": "fewfdefc",
+        "detailsUrl": "aaronchrisjo.vercel.app",
+        "imageUrl": "https://firebasestorage.googleapis.com/v0/b/portfolio-io-2509.appspot.com/o/images%2FScreenshot%202024-08-06%20142525.png?alt=media&token=d138cf43-fd12-4192-a654-72bcd144d399",
+        "name": "CJ Portfolio"
+      }
+     
+    }
+  }
