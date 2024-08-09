@@ -1,18 +1,20 @@
 <header class="flex items-center justify-between p-4 bg-white text-black">
-    <div class="logo flex gap-2">
-      <img src="assets/logo.svg" alt="Logo" class="h-16">
-      <h1 class="text-4xl mt-3">Portfolio.io</h1>
-    </div>
-    <nav class="flex items-center gap-12">
-      <a routerLink="/home" routerLinkActive="active" class="hover:text-gray-400">Home</a>
-      <a routerLink="/about" routerLinkActive="active" class="hover:text-gray-400">About</a>
-      <a routerLink="/contact" routerLinkActive="active" class="hover:text-gray-400">Contact Us</a>
-      <button routerLink="/signup" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-teal-500 text-white font-semibold rounded-lg hover:bg-blue-200 transition duration-300 ease-in-out">
-        Signup
-      </button>
-      <button routerLink="/login" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-teal-500 text-white font-semibold rounded-lg hover:bg-blue-200 transition duration-300 ease-in-out">
-        Login
-      </button>
-    </nav>
-  </header>
-  
+  <div class="logo flex gap-2">
+    <img src="assets/logo.svg" alt="Logo" class="h-16">
+    <h1 class="text-4xl mt-3">Portfolio.io</h1>
+  </div>
+  <nav class="flex items-center gap-12">
+    <a routerLink="/home" routerLinkActive="active" class="hover:text-gray-400">Home</a>
+    <a routerLink="/about" routerLinkActive="active" class="hover:text-gray-400">About</a>
+    <a routerLink="/contact" routerLinkActive="active" class="hover:text-gray-400">Contact Us</a>
+    <button *ngIf="!(isAuthenticated$ | async)" routerLink="/signup" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-teal-500 text-white font-semibold rounded-lg hover:bg-blue-200 transition duration-300 ease-in-out">
+      Signup
+    </button>
+    <button *ngIf="!(isAuthenticated$ | async)" routerLink="/login" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-teal-500 text-white font-semibold rounded-lg hover:bg-blue-200 transition duration-300 ease-in-out">
+      Login
+    </button>
+    <button *ngIf="isAuthenticated$ | async" (click)="onLogout()" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-teal-500 text-white font-semibold rounded-lg hover:bg-blue-200 transition duration-300 ease-in-out">
+      Logout
+    </button>
+  </nav>
+</header>
