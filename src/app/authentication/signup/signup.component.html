@@ -1,49 +1,84 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-100">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-      <h2 class="text-2xl font-bold mb-6 text-center">Sign Up</h2>
-      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <div class="mb-4">
-          <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-          <input id="username" formControlName="username" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-          <div *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched" class="text-red-600 text-sm mt-1">
-            Username is required.
-          </div>
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-200 via-blue-200 to-purple-200 p-6">
+  <div class="bg-white p-6 rounded-2xl shadow-2xl w-full max-w-md">
+    <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">Sign Up</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+        <input 
+          id="username" 
+          formControlName="username" 
+          type="text" 
+          class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+          placeholder="Choose a username"
+        />
+        <div *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched" class="text-red-600 text-sm mt-2">
+          Username is required.
         </div>
-  
-        <div class="mb-4">
-          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-          <input id="email" formControlName="email" type="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-          <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-red-600 text-sm mt-1">
-            Valid email is required.
-          </div>
+      </div>
+
+      <div class="mb-6">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input 
+          id="email" 
+          formControlName="email" 
+          type="email" 
+          class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          placeholder="Enter your email"
+        />
+        <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-red-600 text-sm mt-2">
+          Valid email is required.
         </div>
-  
-        <div class="mb-4">
-          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-          <input id="password" formControlName="password" type="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-          <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-red-600 text-sm mt-1">
-            Password is required.
-          </div>
+      </div>
+
+      <div class="mb-6">
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input 
+          id="password" 
+          formControlName="password" 
+          type="password" 
+          class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+          placeholder="Create a password"
+        />
+        <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-red-600 text-sm mt-2">
+          Password is required.
         </div>
-  
-        <div class="mb-6">
-          <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-          <input id="confirmPassword" formControlName="confirmPassword" type="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-          <div *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched" class="text-red-600 text-sm mt-1">
-            Passwords must match.
-          </div>
+      </div>
+
+      <div class="mb-6">
+        <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+        <input 
+          id="confirmPassword" 
+          formControlName="confirmPassword" 
+          type="password" 
+          class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+          placeholder="Confirm your password"
+        />
+        <div *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched" class="text-red-600 text-sm mt-2">
+          Passwords must match.
         </div>
-  
-        <button type="submit" class="w-full bg-indigo-600 text-white p-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          Sign Up
-        </button>
-        <button (click)="signUpWithGoogle()" type="button" class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2">
-          <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
+      </div>
+
+      <button 
+        type="submit" 
+        class="w-full bg-indigo-600 text-white p-3 rounded-lg font-semibold shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out"
+      >
+        Sign Up
+      </button>
+
+      <div class="mt-6 flex items-center justify-center">
+        <span class="text-gray-600 text-sm">Or sign up with</span>
+      </div>
+
+      <button 
+        (click)="signUpWithGoogle()" 
+        type="button" 
+        class="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-medium p-3 rounded-lg shadow-md flex items-center justify-center transition duration-300 ease-in-out"
+      >
+        <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
           <path fill-rule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clip-rule="evenodd"/>
-          </svg>
-          Sign up with Google
-          </button>
-      </form>
-    </div>
+        </svg>
+        Sign up with Google
+      </button>
+    </form>
   </div>
-  
+</div>
