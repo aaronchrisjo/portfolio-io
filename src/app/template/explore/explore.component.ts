@@ -1,28 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-explore',
   templateUrl: './explore.component.html',
-  styleUrl: './explore.component.css'
+  styleUrls: ['./explore.component.css']
 })
-export class ExploreComponent {
+export class ExploreComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private productService: ProductService){}
+  constructor(private productService: ProductService) {}
 
-  ngOnInit():void{
-    this.productService.getProducts().subscribe(products=>{
-      this.products = products;
-    })
+  ngOnInit(): void {
+    this.loadLatestProducts();
   }
 
-  onClickUnready(){
-    alert('Explore page still under developement. Navigate to All-Templates page.')
+  loadLatestProducts(): void {
+    this.productService.getLatestProducts(6).subscribe(
+      products => {
+        this.products = products;
+      },
+      error => {
+        console.error('Error loading latest products:', error);
+      }
+    );
   }
 
-  scrollTop(){
-    window.scrollTo({top:0, behavior:'smooth'})
+  onClickUnready(): void {
+    alert('Explore page still under development. Navigate to All-Templates page.');
+  }
+
+  scrollTop(): void {
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
 }
