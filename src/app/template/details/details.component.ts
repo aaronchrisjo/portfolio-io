@@ -15,7 +15,7 @@ export class DetailsComponent {
 
 
   close():void{
-    this.location.back();
+    this.product = null;
   }
 
 }

@@ -29,11 +29,9 @@ export class AllTemplatesComponent implements OnInit {
 
   openModal(product: Product): void {
     this.selectedProduct = product;
-    // Your modal opening logic
   }
 
   closeModal(): void {
     this.selectedProduct = null;
-    // Your modal closing logic
   }
 }
