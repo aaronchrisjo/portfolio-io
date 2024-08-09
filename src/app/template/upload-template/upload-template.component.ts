@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Database, ref, set } from '@angular/fire/database';
+import { Database, push, ref, set } from '@angular/fire/database';
 import { Storage, ref as storageRef, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
 import { inject } from '@angular/core';
 
@@ -61,7 +61,7 @@ export class UploadTemplateComponent {
           category
         };
         const productRef = ref(this.db, 'products');  // Save under "products" node
-        await set(productRef, productData);
+        await push(productRef, productData);
 
         console.log('Product submitted successfully!');
       } catch (error) {
