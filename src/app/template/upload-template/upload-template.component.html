@@ -1,38 +1,38 @@
-<div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
-  <h2 class="text-2xl font-semibold mb-6 text-center">Upload Your Portfolio</h2>
+<div class="max-w-2xl mx-auto p-8 bg-white rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">Upload Your Portfolio</h2>
 
-   <!-- Success Message -->
-   <div *ngIf="isSubmitted" class="mb-6 p-4 bg-green-100 text-green-700 rounded-md">
+  <!-- Success Message -->
+  <div *ngIf="isSubmitted" class="mb-6 p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-md">
     Your portfolio has been submitted successfully!
   </div>
 
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-    <div class="mb-4">
-      <label for="name" class="block text-sm font-medium text-gray-700">Portfolio Name</label>
-      <input id="name" formControlName="name" type="text" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+    <div class="mb-6">
+      <label for="name" class="block text-lg font-medium text-gray-700">Portfolio Name</label>
+      <input id="name" formControlName="name" type="text" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Enter portfolio name"/>
     </div>
 
-    <div class="mb-4">
-      <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-      <textarea id="description" formControlName="description" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+    <div class="mb-6">
+      <label for="description" class="block text-lg font-medium text-gray-700">Description</label>
+      <textarea id="description" formControlName="description" rows="4" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Provide a brief description"></textarea>
     </div>
 
-    <div class="mb-4">
-      <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
-      <input id="image" type="file" (change)="onFileSelected($event)" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"/>
+    <div class="mb-6">
+      <label for="image" class="block text-lg font-medium text-gray-700">Image</label>
+      <input id="image" type="file" (change)="onFileSelected($event)" class="mt-2 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-lg file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"/>
       <div *ngIf="imagePreviewUrl" class="mt-4">
-        <img [src]="imagePreviewUrl" alt="Image Preview" class="w-full h-auto rounded-md shadow-sm"/>
+        <img [src]="imagePreviewUrl" alt="Image Preview" class="w-full h-auto rounded-lg shadow-md"/>
       </div>
     </div>
 
-    <div class="mb-4">
-      <label for="detailsUrl" class="block text-sm font-medium text-gray-700">Github URL</label>
-      <input id="detailsUrl" formControlName="detailsUrl" type="text" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
+    <div class="mb-6">
+      <label for="detailsUrl" class="block text-lg font-medium text-gray-700">Github URL</label>
+      <input id="detailsUrl" formControlName="detailsUrl" type="text" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="https://github.com/your-profile"/>
     </div>
 
-    <div class="mb-4">
-      <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
-      <select id="category" formControlName="category" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+    <div class="mb-6">
+      <label for="category" class="block text-lg font-medium text-gray-700">Category</label>
+      <select id="category" formControlName="category" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         <option value="" disabled selected>Select a category</option>
         <option value="angular">Angular</option>
         <option value="react">React</option>
@@ -40,7 +40,7 @@
       </select>
     </div>
 
-    <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out">
       Submit
     </button>
   </form>

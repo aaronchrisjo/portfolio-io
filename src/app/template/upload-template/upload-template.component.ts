@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Database, push, ref, set } from '@angular/fire/database';
 import { Storage, ref as storageRef, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
 import { inject } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-upload-template',
@@ -17,7 +18,7 @@ export class UploadTemplateComponent {
   imagePreviewUrl: string | ArrayBuffer | null = null;
   isSubmitted: boolean =false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private location: Location) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -64,6 +65,7 @@ export class UploadTemplateComponent {
         const productRef = ref(this.db, 'products');  // Save under "products" node
         await push(productRef, productData);
         console.log('Product submitted successfully!');
+        this.location.back();
         this.isSubmitted =true;
 
 
