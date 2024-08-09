@@ -49,4 +49,9 @@ export class SignupComponent {
       }
     }
   }
+  signUpWithGoogle(): void {
+    this.authService.signUpWithGoogle().catch(error => {
+      console.error('Google Signup Error:', error);
+    });
+  }
 }

@@ -35,4 +35,9 @@ export class LoginComponent {
       }
     }
   }
+  googleLogin(): void {
+    this.authService.googleLogin().catch(error => {
+      console.error('Google Login Error:', error);
+    });
+  }
 }
