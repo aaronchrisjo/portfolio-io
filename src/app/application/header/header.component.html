@@ -7,14 +7,20 @@
     <a routerLink="/home" routerLinkActive="active" class="hover:text-gray-400">Home</a>
     <a routerLink="/about" routerLinkActive="active" class="hover:text-gray-400">About</a>
     <a routerLink="/contact" routerLinkActive="active" class="hover:text-gray-400">Contact Us</a>
-    <button *ngIf="!(isAuthenticated$ | async)" routerLink="/signup" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-teal-500 text-white font-semibold rounded-lg hover:bg-blue-200 transition duration-300 ease-in-out">
-      Signup
+    <button *ngIf="!(isAuthenticated$ | async)" routerLink="/signup" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+      <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+        Sign Up
+        </span>
     </button>
-    <button *ngIf="!(isAuthenticated$ | async)" routerLink="/login" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-teal-500 text-white font-semibold rounded-lg hover:bg-blue-200 transition duration-300 ease-in-out">
-      Login
+    <button *ngIf="!(isAuthenticated$ | async)" routerLink="/login" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+      <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white text-black rounded-md group-hover:bg-opacity-0">
+        Login
+        </span>
     </button>
-    <button *ngIf="isAuthenticated$ | async" (click)="onLogout()" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-teal-500 text-white font-semibold rounded-lg hover:bg-blue-200 transition duration-300 ease-in-out">
-      Logout
+    <button *ngIf="isAuthenticated$ | async" (click)="onLogout()" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+      <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white text-black rounded-md group-hover:bg-opacity-0">
+        Logout
+        </span>
     </button>
   </nav>
 </header>
