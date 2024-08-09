@@ -15,6 +15,7 @@ export class UploadTemplateComponent {
   productForm: FormGroup;
   selectedFile: File | null = null;
   imagePreviewUrl: string | ArrayBuffer | null = null;
+  isSubmitted: boolean =false;
 
   constructor(private fb: FormBuilder) {
     this.productForm = this.fb.group({
@@ -62,8 +63,10 @@ export class UploadTemplateComponent {
         };
         const productRef = ref(this.db, 'products');  // Save under "products" node
         await push(productRef, productData);
-
         console.log('Product submitted successfully!');
+        this.isSubmitted =true;
+
+
       } catch (error) {
         console.error('Upload failed:', error);
       }
