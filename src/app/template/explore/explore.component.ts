@@ -21,4 +21,8 @@ export class ExploreComponent {
   onClickUnready(){
     alert('Explore page still under developement. Navigate to All-Templates page.')
   }
+
+  scrollTop(){
+    window.scrollTo({top:0, behavior:'smooth'})
+  }
 }
