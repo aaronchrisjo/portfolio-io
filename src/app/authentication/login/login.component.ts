@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent {
   private auth = inject(Auth); // Inject Auth service
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private location:Location) {
     // Define form controls and validators
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -26,6 +27,7 @@ export class LoginComponent {
         const { email, password } = this.loginForm.value;
         await this.authService.signIn(email, password); // Use AuthService to sign in
         console.log('Login successful!');
+        this.location.back();
       } catch (error: unknown) {
         if (error instanceof Error) {
           console.error('Login failed:', error.message);
@@ -36,7 +38,11 @@ export class LoginComponent {
     }
   }
   googleLogin(): void {
-    this.authService.googleLogin().catch(error => {
+    this.authService.googleLogin()
+    .then(()=>{
+      this.location.back();
+    })
+    .catch(error => {
       console.error('Google Login Error:', error);
     });
   }

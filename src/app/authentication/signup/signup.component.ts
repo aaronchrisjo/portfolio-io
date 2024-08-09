@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, AbstractControlOptions } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,7 @@ export class SignupComponent {
   private auth = inject(Auth);
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private location: Location) {
     const controls = {
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -50,7 +51,11 @@ export class SignupComponent {
     }
   }
   signUpWithGoogle(): void {
-    this.authService.signUpWithGoogle().catch(error => {
+    this.authService.signUpWithGoogle()
+    .then(()=>{
+      this.location.back();
+    })
+    .catch(error => {
       console.error('Google Signup Error:', error);
     });
   }
