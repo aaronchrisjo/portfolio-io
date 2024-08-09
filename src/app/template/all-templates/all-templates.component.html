@@ -1,15 +1,46 @@
 <div class="min-h-screen bg-white p-8">
   <!-- Header with filter options and upload button -->
   <header class="bg-white shadow-md p-4 mb-6 rounded-lg">
-    <div class="max-w-6xl mx-auto flex justify-center items-center gap-4">
-      <nav class="flex gap-4 items-center">
-        <a (click)="filterProducts('all')" class="px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out" [class.bg-blue-500]="selectedFilter === 'all'" [class.text-white]="selectedFilter === 'all'">All</a>
-        <a (click)="filterProducts('angular')" class="px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out" [class.bg-blue-500]="selectedFilter === 'angular'" [class.text-white]="selectedFilter === 'angular'">Angular</a>
-        <a (click)="filterProducts('react')" class="px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out" [class.bg-blue-500]="selectedFilter === 'react'" [class.text-white]="selectedFilter === 'react'">React</a>
-        <a (click)="filterProducts('html')" class="px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out" [class.bg-blue-500]="selectedFilter === 'html'" [class.text-white]="selectedFilter === 'html'">HTML</a>
-      </nav>
-      <button routerLink="/upload" class="ml-auto px-6 py-2 bg-gradient-to-r from-green-500 to-teal-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-300 ease-in-out">
-        Upload
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <!-- Button group for filter options -->
+      <div class="flex-1 flex justify-center">
+        <div class="inline-flex rounded-md shadow-sm" role="group">
+          <button (click)="filterProducts('all')" type="button" 
+                  class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700"
+                  [class.bg-blue-500]="selectedFilter === 'all'" 
+                  [class.text-white]="selectedFilter === 'all'">
+            All
+          </button>
+          <button (click)="filterProducts('angular')" type="button" 
+                  class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700"
+                  [class.bg-blue-500]="selectedFilter === 'angular'" 
+                  [class.text-white]="selectedFilter === 'angular'">
+            Angular
+          </button>
+          <button (click)="filterProducts('react')" type="button" 
+                  class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700"
+                  [class.bg-blue-500]="selectedFilter === 'react'" 
+                  [class.text-white]="selectedFilter === 'react'">
+            React
+          </button>
+          <button (click)="filterProducts('html')" type="button" 
+                  class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700"
+                  [class.bg-blue-500]="selectedFilter === 'html'" 
+                  [class.text-white]="selectedFilter === 'html'">
+            HTML
+          </button>
+        </div>
+      </div>
+
+      <!-- Upload button -->
+      <button 
+        routerLink="/upload" 
+        class="flex items-center px-3 py-2 bg-gradient-to-r from-green-600 to-teal-600 text-white font-semibold rounded-lg shadow-lg hover:from-green-500 hover:to-teal-500 transition duration-300 ease-in-out">
+        <!-- Plus Icon -->
+        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+        </svg>
+        <span class="text-lg">Upload</span>
       </button>
     </div>
   </header>

@@ -1,0 +1,9 @@
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Upload Arrow Icon -->
+  <polygon points="50,100 80,70 65,70 65,120 35,120 35,70 20,70" fill="black"/>
+
+  <!-- Text: Upload -->
+  <!-- <text x="150" y="120" font-family="Arial, sans-serif" font-size="20" fill="black" text-anchor="middle">
+    Upload
+  </text> -->
+</svg>
