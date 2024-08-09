@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   isAuthenticated$: Observable<User | null>;
   currentRoute: string = '';   
+  isOpen = false;
 
   constructor(private authService: AuthService, private router: Router) {
     this.isAuthenticated$ = this.authService.isAuthenticated;
@@ -24,5 +25,9 @@ export class HeaderComponent {
 
   async onLogout(): Promise<void> {
     await this.authService.logout();
+  }
+
+  toggleMenu() {
+    this.isOpen = !this.isOpen;
   }
 }
