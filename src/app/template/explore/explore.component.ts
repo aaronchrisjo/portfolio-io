@@ -17,4 +17,8 @@ export class ExploreComponent {
       this.products = products;
     })
   }
+
+  onClickUnready(){
+    alert('Explore page still under developement. Navigate to All-Templates page.')
+  }
 }

@@ -1,37 +1,41 @@
 <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
-    <h2 class="text-2xl font-semibold mb-6 text-center">Upload Product</h2>
-    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-      <div class="mb-4">
-        <label for="name" class="block text-sm font-medium text-gray-700">Product Name</label>
-        <input id="name" formControlName="name" type="text" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+  <h2 class="text-2xl font-semibold mb-6 text-center">Upload Product</h2>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label for="name" class="block text-sm font-medium text-gray-700">Product Name</label>
+      <input id="name" formControlName="name" type="text" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+    </div>
+
+    <div class="mb-4">
+      <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+      <textarea id="description" formControlName="description" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+    </div>
+
+    <div class="mb-4">
+      <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+      <input id="image" type="file" (change)="onFileSelected($event)" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"/>
+      <div *ngIf="imagePreviewUrl" class="mt-4">
+        <img [src]="imagePreviewUrl" alt="Image Preview" class="w-full h-auto rounded-md shadow-sm"/>
       </div>
-  
-      <div class="mb-4">
-        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-        <textarea id="description" formControlName="description" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
-      </div>
-  
-      <div class="mb-4">
-        <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
-        <input id="image" type="file" (change)="onFileSelected($event)" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"/>
-        <div *ngIf="imagePreviewUrl" class="mt-4">
-          <img [src]="imagePreviewUrl" alt="Image Preview" class="w-full h-auto rounded-md shadow-sm"/>
-        </div>
-      </div>
-  
-      <div class="mb-4">
-        <label for="detailsUrl" class="block text-sm font-medium text-gray-700">Details URL</label>
-        <input id="detailsUrl" formControlName="detailsUrl" type="text" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
-      </div>
-  
-      <div class="mb-4">
-        <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
-        <input id="category" formControlName="category" type="text" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
-      </div>
-  
-      <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        Submit
-      </button>
-    </form>
-  </div>
-  
+    </div>
+
+    <div class="mb-4">
+      <label for="detailsUrl" class="block text-sm font-medium text-gray-700">Details URL</label>
+      <input id="detailsUrl" formControlName="detailsUrl" type="text" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
+    </div>
+
+    <div class="mb-4">
+      <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+      <select id="category" formControlName="category" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <option value="" disabled selected>Select a category</option>
+        <option value="angular">Angular</option>
+        <option value="react">React</option>
+        <option value="html">HTML</option>
+      </select>
+    </div>
+
+    <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      Submit
+    </button>
+  </form>
+</div>
