@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, User, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private currentUser: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
   public isAuthenticated$ = this.currentUser.asObservable();
+  user$: Observable<User | null> = this.currentUser.asObservable();
 
   constructor(private auth: Auth) {
     onAuthStateChanged(this.auth, (user) => {

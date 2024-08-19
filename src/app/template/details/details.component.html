@@ -17,6 +17,10 @@
       <i class="fab fa-github mr-2"></i>
       View on GitHub
     </a>
+
+    <button (click)="toggleFavorite()">
+      {{ product.isFavorite ? 'Remove from Favorites' : 'Add to Favorites' }}
+    </button>
     
   </div>
 </div>

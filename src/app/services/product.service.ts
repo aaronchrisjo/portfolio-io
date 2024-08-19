@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Database, ref, query, limitToLast, get, DatabaseReference } from '@angular/fire/database';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { Product } from '../interfaces/product';
+import { FavoritesService } from './favorites.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +11,45 @@ import { Product } from '../interfaces/product';
 export class ProductService {
   private productsRef: DatabaseReference;
 
-  constructor(private db: Database) {
+  constructor(private db: Database, private favoritesService: FavoritesService) {
     this.productsRef = ref(this.db, 'products');
   }
 
   getProducts(): Observable<Product[]> {
+    return this.getAllProducts().pipe(
+      switchMap(products => 
+        combineLatest([
+          of(products),
+          this.favoritesService.getFavorites()
+        ])
+      ),
+      map(([products, favorites]) => 
+        products.map(product => ({
+          ...product,
+          isFavorite: favorites.includes(product.id)
+        }))
+      )
+    );
+  }
+
+  getLatestProducts(limit: number = 6): Observable<Product[]> {
+    return this.getLatestProductsFromDB(limit).pipe(
+      switchMap(products => 
+        combineLatest([
+          of(products),
+          this.favoritesService.getFavorites()
+        ])
+      ),
+      map(([products, favorites]) => 
+        products.map(product => ({
+          ...product,
+          isFavorite: favorites.includes(product.id)
+        }))
+      )
+    );
+  }
+
+  private getAllProducts(): Observable<Product[]> {
     return new Observable(observer => {
       get(this.productsRef).then(snapshot => {
         if (snapshot.exists()) {
@@ -38,7 +74,7 @@ export class ProductService {
     });
   }
 
-  getLatestProducts(limit: number = 6): Observable<Product[]> {
+  private getLatestProductsFromDB(limit: number): Observable<Product[]> {
     return new Observable(observer => {
       const latestProductsQuery = query(this.productsRef, limitToLast(limit));
       
@@ -54,7 +90,6 @@ export class ProductService {
             category: value.category
           }));
           
-          // Reverse the array to get the latest products first
           observer.next(products.reverse());
         } else {
           observer.next([]);
