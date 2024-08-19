@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 export class SignupComponent {
   private auth = inject(Auth);
   signupForm: FormGroup;
+  isEmailFormVisible = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private location: Location) {
     const controls = {
@@ -58,5 +59,9 @@ export class SignupComponent {
     .catch(error => {
       console.error('Google Signup Error:', error);
     });
+  }
+
+  showEmailForm() {
+    this.isEmailFormVisible = true;
   }
 }
