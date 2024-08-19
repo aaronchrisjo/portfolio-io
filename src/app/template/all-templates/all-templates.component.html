@@ -57,7 +57,33 @@
         </div>
       </div>
     </div>
-  </div>
+
+ <!-- Pagination Controls -->
+<div class="flex justify-center mt-6">
+  <!-- Previous Page Button -->
+  <button (click)="goToPreviousPage()" [disabled]="currentPage === 1" class="px-3 py-1 bg-gray-200 text-gray-700 rounded-l-md border border-gray-300 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out" [class.opacity-50]="currentPage === 1">
+    Prev
+  </button>
+  
+  <!-- Page Numbers -->
+  <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+    <button (click)="goToPage(i + 1)" 
+            [class.bg-blue-500]="currentPage === (i + 1)" 
+            [class.text-white]="currentPage === (i + 1)" 
+            [class.border]="currentPage !== (i + 1)"
+            class="px-3 py-1 border border-gray-300 rounded-md mx-1 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+      {{ i + 1 }}
+    </button>
+  </ng-container>
+  
+  <!-- Next Page Button -->
+  <button (click)="goToNextPage()" [disabled]="currentPage === totalPages" class="px-3 py-1 bg-gray-200 text-gray-700 rounded-r-md border border-gray-300 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out" [class.opacity-50]="currentPage === totalPages">
+    Next
+  </button>
+</div>
+
+
+
 
   <!-- Product Modal -->
   <app-details [product]="selectedProduct" (close)="closeModal()"></app-details>
