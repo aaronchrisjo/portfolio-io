@@ -4,6 +4,7 @@ import { HomeComponent } from './application/home/home.component';
 import { AboutComponent } from './application/about/about.component';
 import { ExploreComponent } from './template/explore/explore.component';
 import { AllTemplatesComponent } from './template/all-templates/all-templates.component';
+import { authGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -11,7 +12,7 @@ const routes: Routes = [
   { path:'about', component: AboutComponent},
   
   {path:'explore', component:ExploreComponent},
-  {path:'all-template', component:AllTemplatesComponent},
+  {path:'all-template', component:AllTemplatesComponent, canActivate:[authGuard]},
   
 ];
 
