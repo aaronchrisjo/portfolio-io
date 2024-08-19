@@ -9,6 +9,9 @@ import { FavoritesService } from './favorites.service';
   providedIn: 'root'
 })
 export class ProductService {
+  toggleFavorite(id: string) {
+    throw new Error('Method not implemented.');
+  }
   private productsRef: DatabaseReference;
 
   constructor(private db: Database, private favoritesService: FavoritesService) {
