@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { ApplicationModule } from './application/application.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { TemplateModule } from './template/template.module';
-import { firebaseConfig } from '../environments/firebaseConfig';
 import { AuthService } from './services/auth.service';
 import { appConfig } from './app.config';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
