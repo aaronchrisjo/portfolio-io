@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
+import { FavoritesService } from '../../services/favorites.service';
 
 
 @Component({
@@ -11,7 +12,11 @@ import { ProductService } from '../../services/product.service';
 export class FavoritesComponent implements OnInit {
   favorites: Product[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private favoritesService: FavoritesService
+  ) {}
+
 
   ngOnInit(): void {
     this.loadFavorites();
@@ -26,6 +31,14 @@ export class FavoritesComponent implements OnInit {
         console.error('Error loading favorites:', error);
       }
     );
+  }
+
+  removeFavorite(product: Product): void {
+    this.favoritesService.toggleFavorite(product.id).then(() => {
+      this.loadFavorites(); // Refresh the list after removing
+    }).catch(error => {
+      console.error('Error removing favorite:', error);
+    });
   }
 
   // removeFavorite(product: Product): void {

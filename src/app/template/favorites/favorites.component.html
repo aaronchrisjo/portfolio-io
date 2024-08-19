@@ -1,30 +1,29 @@
 <div class="min-h-screen p-8 bg-gray-100">
-  <div class="max-w-3xl mx-auto">
-    <!-- Heading -->
-    <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Favorites</h2>
-
-    <!-- No Favorites Message -->
-    <div *ngIf="favorites.length === 0" class="text-center text-gray-600">
-      <p>You have no favorite products.</p>
-    </div>
-
-    <!-- Favorites List -->
-    <div *ngFor="let product of favorites" class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center">
-      <!-- Product Image -->
-      <img [src]="product.imageUrl" [alt]="product.name" class="w-16 h-16 rounded-full object-cover mr-4">
-
-      <!-- Product Details -->
-      <div>
-        <h3 class="text-xl font-semibold text-gray-800">{{ product.name }}</h3>
-        <p class="text-gray-600">{{ product.description }}</p>
+    <div class="max-w-3xl mx-auto">
+      <!-- Heading -->
+      <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Favorites</h2>
+  
+      <!-- No Favorites Message -->
+      <div *ngIf="favorites.length === 0" class="text-center text-gray-600">
+        <p>You have no favorite products.</p>
       </div>
-
-      <!-- Remove Button (Optional) -->
-      <!--
-      <button (click)="removeFavorite(product)" class="ml-auto bg-red-500 text-white p-2 rounded-lg shadow-md hover:bg-red-600 transition duration-300 ease-in-out">
-        Remove
-      </button>
-      -->
+  
+      <!-- Favorites List -->
+      <div *ngFor="let product of favorites" class="bg-white p-6 rounded-lg shadow-md mb-6 flex items-center">
+        <!-- Product Image -->
+        <img [src]="product.imageUrl" [alt]="product.name" class="w-16 h-16 rounded-full object-cover mr-4">
+  
+        <!-- Product Details -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800">{{ product.name }}</h3>
+          <p class="text-gray-600">{{ product.description }}</p>
+        </div>
+  
+        <!-- Remove Button with Trash Bin Icon -->
+        <button (click)="removeFavorite(product)" class="ml-auto bg-red-500 text-white p-2 rounded-lg shadow-md hover:bg-red-600 transition duration-300 ease-in-out flex items-center justify-center">
+          <i class="fas fa-trash-alt"></i> <!-- Font Awesome trash bin icon -->
+        </button>
+      </div>
     </div>
   </div>
-</div>
+  
