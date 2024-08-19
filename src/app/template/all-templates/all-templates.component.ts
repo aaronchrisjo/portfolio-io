@@ -10,6 +10,7 @@ import { ProductService } from '../../services/product.service';
 export class AllTemplatesComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
+  displayedProducts: Product[] = [];
   selectedFilter: string = 'all';
   selectedProduct: Product | null = null;
 
@@ -23,40 +24,45 @@ export class AllTemplatesComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => {
       this.products = products;
-      this.totalPages = Math.ceil(this.products.length / this.itemsPerPage);
-      this.updatePage();
+      this.applyFilterAndPagination(); // Initialize with default filter and pagination
     });
   }
 
   filterProducts(category: string): void {
     this.selectedFilter = category;
-    const filtered = category === 'all' ? this.products : this.products.filter(product => product.category === category);
-    this.totalPages = Math.ceil(filtered.length / this.itemsPerPage);
-    this.updatePage();
+    this.applyFilterAndPagination(); // Apply filter and update pagination
   }
 
-  updatePage(): void {
+  applyFilterAndPagination(): void {
+    const filtered = this.selectedFilter === 'all' ? this.products : this.products.filter(product => product.category === this.selectedFilter);
+    this.totalPages = Math.ceil(filtered.length / this.itemsPerPage);
+
+    // Update the displayed products based on current page
+    this.updatePage(filtered);
+  }
+
+  updatePage(filteredProducts: Product[]): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    this.filteredProducts = this.products.slice(startIndex, endIndex);
+    this.displayedProducts = filteredProducts.slice(startIndex, endIndex);
   }
 
   goToPage(page: number): void {
     this.currentPage = page;
-    this.updatePage();
+    this.applyFilterAndPagination(); // Reapply filter and update pagination
   }
 
   goToNextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
-      this.updatePage();
+      this.applyFilterAndPagination(); // Reapply filter and update pagination
     }
   }
 
   goToPreviousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.updatePage();
+      this.applyFilterAndPagination(); // Reapply filter and update pagination
     }
   }
 
