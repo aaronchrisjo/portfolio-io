@@ -25,6 +25,7 @@ export class HeaderComponent {
 
   async onLogout(): Promise<void> {
     await this.authService.logout();
+    this.router.navigate(['/home']);
   }
 
   toggleMenu() {
