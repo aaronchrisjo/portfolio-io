@@ -25,9 +25,21 @@
       </div>
     </div>
 
+    <!-- New Technologies Field -->
     <div class="mb-6">
-      <label for="detailsUrl" class="block text-lg font-medium text-gray-700">Github URL</label>
+      <label for="technologies" class="block text-lg font-medium text-gray-700">Technologies Used</label>
+      <input id="technologies" formControlName="technologies" type="text" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Angular, Firebase, Tailwind CSS"/>
+    </div>
+
+    <div class="mb-6">
+      <label for="detailsUrl" class="block text-lg font-medium text-gray-700">GitHub URL</label>
       <input id="detailsUrl" formControlName="detailsUrl" type="text" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="https://github.com/your-profile"/>
+    </div>
+
+    <!-- New Page URL Field -->
+    <div class="mb-6">
+      <label for="pageUrl" class="block text-lg font-medium text-gray-700">Portfolio Page URL</label>
+      <input id="pageUrl" formControlName="pageUrl" type="text" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="https://yourportfolio.com"/>
     </div>
 
     <div class="mb-6">
@@ -38,18 +50,6 @@
         <option value="react">React</option>
         <option value="html">HTML</option>
       </select>
-    </div>
-
-    <!-- New Page URL Field -->
-    <div class="mb-6">
-      <label for="pageUrl" class="block text-lg font-medium text-gray-700">Portfolio Page URL</label>
-      <input id="pageUrl" formControlName="pageUrl" type="text" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="https://yourportfolio.com"/>
-    </div>
-
-    <!-- New Technologies Field -->
-    <div class="mb-6">
-      <label for="technologies" class="block text-lg font-medium text-gray-700">Technologies Used</label>
-      <input id="technologies" formControlName="technologies" type="text" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Angular, Firebase, Tailwind CSS"/>
     </div>
 
     <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out">
