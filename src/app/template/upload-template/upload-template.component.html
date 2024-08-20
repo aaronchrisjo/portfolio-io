@@ -18,16 +18,28 @@
     </div>
 
     <div class="mb-6">
-      <label for="image" class="block text-lg font-medium text-gray-700">Image   (Your Homepage preferably)</label>
+      <label for="image" class="block text-lg font-medium text-gray-700">Image (Your Homepage preferably)</label>
       <input id="image" type="file" (change)="onFileSelected($event)" class="mt-2 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-lg file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"/>
       <div *ngIf="imagePreviewUrl" class="mt-4">
         <img [src]="imagePreviewUrl" alt="Image Preview" class="w-full h-auto rounded-lg shadow-md"/>
       </div>
     </div>
 
+    <!-- New Technologies Field -->
     <div class="mb-6">
-      <label for="detailsUrl" class="block text-lg font-medium text-gray-700">Github URL</label>
+      <label for="technologies" class="block text-lg font-medium text-gray-700">Technologies Used</label>
+      <input id="technologies" formControlName="technologies" type="text" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Angular, Firebase, Tailwind CSS"/>
+    </div>
+
+    <div class="mb-6">
+      <label for="detailsUrl" class="block text-lg font-medium text-gray-700">GitHub URL</label>
       <input id="detailsUrl" formControlName="detailsUrl" type="text" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="https://github.com/your-profile"/>
+    </div>
+
+    <!-- New Page URL Field -->
+    <div class="mb-6">
+      <label for="pageUrl" class="block text-lg font-medium text-gray-700">Portfolio Page URL</label>
+      <input id="pageUrl" formControlName="pageUrl" type="text" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="https://yourportfolio.com"/>
     </div>
 
     <div class="mb-6">
