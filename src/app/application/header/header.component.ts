@@ -47,4 +47,8 @@ export class HeaderComponent {
   toggleMenu() {
     this.isOpen = !this.isOpen;
   }
+
+  settingsTemp(){
+    alert('Settings page still under development. ')
+  }
 }
