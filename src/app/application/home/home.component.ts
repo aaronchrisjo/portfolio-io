@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Auth, onAuthStateChanged } from '@angular/fire/auth';
+import { windowWhen } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -21,5 +22,8 @@ export class HomeComponent {
         this.username = null;
       }
     });
+  }
+  scrollTop(){
+    window.scrollTo({top:0, behavior:'smooth'})
   }
 }
