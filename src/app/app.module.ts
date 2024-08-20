@@ -13,6 +13,7 @@ import { appConfig } from './app.config';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     provideDatabase(() => getDatabase()),
     provideStorage(() => getStorage()),
     provideFirestore(() => getFirestore()),
+    provideAnimationsAsync('noop'),
     // provideFirebaseApp(() => initializeApp({"projectId":"portfolio-io-2509","appId":"1:980713195826:web:959889c95f900f6d852f2b","databaseURL":"https://portfolio-io-2509-default-rtdb.firebaseio.com","storageBucket":"portfolio-io-2509.appspot.com","apiKey":"AIzaSyB5DitSmEXjjYXjv9SHY2WPzyssVKOweiE","authDomain":"portfolio-io-2509.firebaseapp.com","messagingSenderId":"980713195826","measurementId":"G-H2HHH9C1Y7"}))
   ],
   bootstrap: [AppComponent]
