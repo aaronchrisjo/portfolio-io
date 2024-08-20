@@ -63,7 +63,9 @@ export class ProductService {
             description: value.description,
             imageUrl: value.imageUrl,
             detailsUrl: value.detailsUrl,
-            category: value.category
+            category: value.category,
+            pageUrl: value.pageUrl ?? '', // Include new field with a default empty string
+            technologies: value.technologies ?? [] // Include new field with a default empty array
           }));
           observer.next(products);
         } else {
@@ -90,7 +92,9 @@ export class ProductService {
             description: value.description,
             imageUrl: value.imageUrl,
             detailsUrl: value.detailsUrl,
-            category: value.category
+            category: value.category,
+            pageUrl: value.pageUrl ?? '', // Include new field with a default empty string
+            technologies: value.technologies ?? [] // Include new field with a default empty array
           }));
           
           observer.next(products.reverse());

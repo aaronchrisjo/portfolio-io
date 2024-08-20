@@ -6,4 +6,6 @@ export interface Product {
   detailsUrl: string;
   category: string;
   isFavorite?: boolean;
+  pageUrl: string;
+  technologies: string[];
 }

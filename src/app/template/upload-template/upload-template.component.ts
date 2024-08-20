@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Database, push, ref, set } from '@angular/fire/database';
+import { Database, push, ref } from '@angular/fire/database';
 import { Storage, ref as storageRef, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
 import { inject } from '@angular/core';
 import { Location } from '@angular/common';
@@ -16,14 +16,16 @@ export class UploadTemplateComponent {
   productForm: FormGroup;
   selectedFile: File | null = null;
   imagePreviewUrl: string | ArrayBuffer | null = null;
-  isSubmitted: boolean =false;
+  isSubmitted: boolean = false;
 
   constructor(private fb: FormBuilder, private location: Location) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       detailsUrl: ['', Validators.required],
-      category: ['', Validators.required]
+      category: ['', Validators.required],
+      pageUrl: ['', Validators.required],  // New field
+      technologies: ['', Validators.required]  // New field
     });
   }
 
@@ -41,17 +43,15 @@ export class UploadTemplateComponent {
 
   async onSubmit(): Promise<void> {
     if (this.productForm.valid && this.selectedFile) {
-      const { name, description, detailsUrl, category } = this.productForm.value;
+      const { name, description, detailsUrl, category, pageUrl, technologies } = this.productForm.value; // Updated
 
       // Upload the image to Firebase Storage
       const storageRefPath = `images/${this.selectedFile.name}`;
       const fileRef = storageRef(this.storage, storageRefPath);
       const uploadTask = uploadBytesResumable(fileRef, this.selectedFile);
 
-      // Wait for the upload to complete
       try {
         await uploadTask;
-        // Get download URL
         const imageUrl = await getDownloadURL(fileRef);
 
         // Save the product data to Realtime Database
@@ -60,14 +60,15 @@ export class UploadTemplateComponent {
           description,
           imageUrl,
           detailsUrl,
-          category
+          category,
+          pageUrl,  // New field
+          technologies  // New field
         };
-        const productRef = ref(this.db, 'products');  // Save under "products" node
+        const productRef = ref(this.db, 'products');
         await push(productRef, productData);
         console.log('Product submitted successfully!');
         this.location.back();
-        this.isSubmitted =true;
-
+        this.isSubmitted = true;
 
       } catch (error) {
         console.error('Upload failed:', error);
@@ -77,7 +78,7 @@ export class UploadTemplateComponent {
     }
   }
 
-  uploadWarning(){
-    alert('Make sure the details enetered are correct as it cannot be reversed.')
+  uploadWarning() {
+    alert('Make sure the details entered are correct as they cannot be reversed.');
   }
 }
