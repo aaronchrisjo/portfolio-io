@@ -18,7 +18,7 @@
     </div>
 
     <div class="mb-6">
-      <label for="image" class="block text-lg font-medium text-gray-700">Image</label>
+      <label for="image" class="block text-lg font-medium text-gray-700">Image   (Your Homepage preferably)</label>
       <input id="image" type="file" (change)="onFileSelected($event)" class="mt-2 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-lg file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"/>
       <div *ngIf="imagePreviewUrl" class="mt-4">
         <img [src]="imagePreviewUrl" alt="Image Preview" class="w-full h-auto rounded-lg shadow-md"/>

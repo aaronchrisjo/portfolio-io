@@ -50,12 +50,14 @@ export class AllTemplatesComponent implements OnInit {
   goToPage(page: number): void {
     this.currentPage = page;
     this.applyFilterAndPagination(); // Reapply filter and update pagination
+    window.scrollTo({top:0, behavior:'smooth'})
   }
 
   goToNextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.applyFilterAndPagination(); // Reapply filter and update pagination
+      window.scrollTo({top:0, behavior:'smooth'})
     }
   }
 
@@ -63,6 +65,7 @@ export class AllTemplatesComponent implements OnInit {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.applyFilterAndPagination(); // Reapply filter and update pagination
+      window.scrollTo({top:0, behavior:'smooth'})
     }
   }
 
@@ -72,5 +75,9 @@ export class AllTemplatesComponent implements OnInit {
 
   closeModal(): void {
     this.selectedProduct = null;
+  }
+
+  uploadWarning(){
+    alert('While uploading, recheck and make sure the details enetered are correct as it cannot be reversed.')
   }
 }

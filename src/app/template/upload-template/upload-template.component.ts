@@ -76,4 +76,8 @@ export class UploadTemplateComponent {
       console.error('Form is invalid or no file selected');
     }
   }
+
+  uploadWarning(){
+    alert('Make sure the details enetered are correct as it cannot be reversed.')
+  }
 }
