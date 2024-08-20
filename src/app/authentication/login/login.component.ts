@@ -3,6 +3,7 @@ import { Auth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
   private auth = inject(Auth); // Inject Auth service
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private location:Location) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private location:Location, private router: Router) {
     // Define form controls and validators
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -27,7 +28,7 @@ export class LoginComponent {
         const { email, password } = this.loginForm.value;
         await this.authService.signIn(email, password); // Use AuthService to sign in
         console.log('Login successful!');
-        this.location.back();
+        this.router.navigate(['/all-template']);
       } catch (error: unknown) {
         if (error instanceof Error) {
           console.error('Login failed:', error.message);
@@ -40,7 +41,7 @@ export class LoginComponent {
   googleLogin(): void {
     this.authService.googleLogin()
     .then(()=>{
-      this.location.back();
+      this.router.navigate(['/all-template'])
     })
     .catch(error => {
       console.error('Google Login Error:', error);
