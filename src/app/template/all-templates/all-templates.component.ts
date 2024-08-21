@@ -16,7 +16,7 @@ export class AllTemplatesComponent implements OnInit {
 
   // Pagination properties
   currentPage: number = 1;
-  itemsPerPage: number = 12;
+  itemsPerPage: number = 15;
   totalPages: number = 0;
 
   constructor(private productService: ProductService) {}
