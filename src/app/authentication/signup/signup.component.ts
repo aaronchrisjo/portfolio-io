@@ -4,6 +4,7 @@ import { Auth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, AbstractControlOptions } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,7 @@ export class SignupComponent {
   signupForm: FormGroup;
   isEmailFormVisible = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private location: Location) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private location: Location, private router: Router) {
     const controls = {
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -42,6 +43,7 @@ export class SignupComponent {
         const { email, password } = this.signupForm.value;
         await this.authService.signUp(email, password);
         console.log('Sign up successful!');
+        this.router.navigate(['/all-template'])
       } catch (error: unknown) {
         if (error instanceof Error) {
           console.error('Sign up failed:', error.message);
@@ -54,7 +56,7 @@ export class SignupComponent {
   signUpWithGoogle(): void {
     this.authService.signUpWithGoogle()
     .then(()=>{
-      this.location.back();
+      this.router.navigate(['/all-template'])
     })
     .catch(error => {
       console.error('Google Signup Error:', error);
