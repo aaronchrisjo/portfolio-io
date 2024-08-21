@@ -3,7 +3,6 @@ import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
 import { FavoritesService } from '../../services/favorites.service';
 
-
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
@@ -11,12 +10,12 @@ import { FavoritesService } from '../../services/favorites.service';
 })
 export class FavoritesComponent implements OnInit {
   favorites: Product[] = [];
+  selectedProduct: Product | null = null;
 
   constructor(
     private productService: ProductService,
     private favoritesService: FavoritesService
   ) {}
-
 
   ngOnInit(): void {
     this.loadFavorites();
@@ -41,11 +40,11 @@ export class FavoritesComponent implements OnInit {
     });
   }
 
-  // removeFavorite(product: Product): void {
-  //   // Assuming you have a method to toggle favorite status
-  //   product.isFavorite = false;
-  //   this.productService.toggleFavorite(product.id).catch(error => {
-  //     console.error('Error removing favorite:', error);
-  //   });
-  // }
+  openModal(product: Product): void {
+    this.selectedProduct = product;
+  }
+
+  closeModal(): void {
+    this.selectedProduct = null;
+  }
 }
