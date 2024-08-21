@@ -52,8 +52,17 @@
       </select>
     </div>
 
-    <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out">
-      Submit
-    </button>
+    <button 
+  type="submit" 
+  class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out"
+  [disabled]="uploadProgress !== null && uploadProgress < 100">
+  <ng-container *ngIf="uploadProgress === null || uploadProgress >= 100; else progressTemplate">
+    Submit
+  </ng-container>
+  <ng-template #progressTemplate>
+    Uploading... {{ uploadProgress | number: '1.0-0' }}%
+  </ng-template>
+</button>
+
   </form>
 </div>

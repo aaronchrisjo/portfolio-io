@@ -17,6 +17,7 @@ export class UploadTemplateComponent {
   selectedFile: File | null = null;
   imagePreviewUrl: string | ArrayBuffer | null = null;
   isSubmitted: boolean = false;
+  uploadProgress: number | null = null;  // New field to track upload progress
 
   constructor(private fb: FormBuilder, private location: Location) {
     this.productForm = this.fb.group({
@@ -43,36 +44,47 @@ export class UploadTemplateComponent {
 
   async onSubmit(): Promise<void> {
     if (this.productForm.valid && this.selectedFile) {
-      const { name, description, detailsUrl, category, pageUrl, technologies } = this.productForm.value; // Updated
+      const { name, description, detailsUrl, category, pageUrl, technologies } = this.productForm.value;
 
       // Upload the image to Firebase Storage
       const storageRefPath = `images/${this.selectedFile.name}`;
       const fileRef = storageRef(this.storage, storageRefPath);
       const uploadTask = uploadBytesResumable(fileRef, this.selectedFile);
 
-      try {
-        await uploadTask;
-        const imageUrl = await getDownloadURL(fileRef);
+      // Track upload progress
+      uploadTask.on('state_changed', 
+        (snapshot) => {
+          // Calculate progress percentage
+          this.uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        }, 
+        (error) => {
+          console.error('Upload failed:', error);
+        }, 
+        async () => {
+          // Upload completed successfully
+          try {
+            const imageUrl = await getDownloadURL(fileRef);
 
-        // Save the product data to Realtime Database
-        const productData = {
-          name,
-          description,
-          imageUrl,
-          detailsUrl,
-          category,
-          pageUrl,  // New field
-          technologies  // New field
-        };
-        const productRef = ref(this.db, 'products');
-        await push(productRef, productData);
-        console.log('Product submitted successfully!');
-        this.location.back();
-        this.isSubmitted = true;
-
-      } catch (error) {
-        console.error('Upload failed:', error);
-      }
+            // Save the product data to Realtime Database
+            const productData = {
+              name,
+              description,
+              imageUrl,
+              detailsUrl,
+              category,
+              pageUrl,  // New field
+              technologies  // New field
+            };
+            const productRef = ref(this.db, 'products');
+            await push(productRef, productData);
+            console.log('Product submitted successfully!');
+            this.location.back();
+            this.isSubmitted = true;
+          } catch (error) {
+            console.error('Upload failed:', error);
+          }
+        }
+      );
     } else {
       console.error('Form is invalid or no file selected');
     }
