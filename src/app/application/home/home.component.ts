@@ -1,29 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Auth, onAuthStateChanged } from '@angular/fire/auth';
-import { windowWhen } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   username: string | null = null;
+  transformStyle: string = '';
 
   constructor(private auth: Auth) {}
 
   ngOnInit(): void {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
-        // The user is logged in, extract the display name
         this.username = user.displayName ? user.displayName : user.email;
       } else {
-        // The user is not logged in, handle accordingly
         this.username = null;
       }
     });
   }
-  scrollTop(){
-    window.scrollTo({top:0, behavior:'smooth'})
+
+  @HostListener('mousemove', ['$event'])
+  onMouseMove(event: MouseEvent) {
+    const x = (window.innerWidth - event.pageX) / 100;
+    const y = (window.innerHeight - event.pageY) / 100;
+
+    this.transformStyle = `translate(${x}px, ${y}px)`;
+  }
+
+  scrollTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

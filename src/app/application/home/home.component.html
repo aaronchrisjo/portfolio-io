@@ -1,8 +1,8 @@
-<div class="relative min-h-screen bg-black text-white">
+<div class="relative min-h-screen bg-black text-white" (mousemove)="onMouseMove($event)">
   <!-- Background Image Container -->
   <div class="absolute inset-0 flex items-center justify-center">
     <!-- Smaller Background Image -->
-    <img src="assets/logo.svg" alt="Logo" class="object-cover opacity-20" style="width: 40%; height: auto;">
+    <img src="assets/logo.svg" alt="Logo" class="object-cover opacity-20" style="width: 40%; height: auto;" [ngStyle]="{'transform': transformStyle}">
   </div>
 
   <!-- Overlay Content -->
