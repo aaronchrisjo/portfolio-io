@@ -6,29 +6,28 @@
       <div class="flex-1 flex justify-center">
         <div class="inline-flex rounded-md shadow-sm" role="group">
           <button (click)="filterProducts('all')" type="button" 
-                  class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 hover:scale-105"
-                  [class.bg-blue-500]="selectedFilter === 'all'" 
+                  class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform hover:scale-105"
                   [class.text-blue-900]="selectedFilter === 'all'"
                   [class.bg-opacity-50]="selectedFilter === 'all'">
             All
           </button>
           <button (click)="filterProducts('angular')" type="button" 
-                  class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 hover:scale-105"
-                  [class.bg-blue-500]="selectedFilter === 'angular'" 
+                  class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform hover:scale-105"
+                   
                   [class.text-blue-900]="selectedFilter === 'angular'"
                   [class.bg-opacity-50]="selectedFilter === 'angular'">
             Angular
           </button>
           <button (click)="filterProducts('react')" type="button" 
-                  class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 hover:scale-105"
-                  [class.bg-blue-500]="selectedFilter === 'react'" 
+                  class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform hover:scale-105"
+                  
                   [class.text-blue-900]="selectedFilter === 'react'"
                   [class.bg-opacity-50]="selectedFilter === 'react'">
             React
           </button>
           <button (click)="filterProducts('html')" type="button" 
-                  class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 hover:scale-105"
-                  [class.bg-blue-500]="selectedFilter === 'html'" 
+                  class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform hover:scale-105"
+                 
                   [class.text-blue-900]="selectedFilter === 'html'"
                   [class.bg-opacity-50]="selectedFilter === 'html'">
             HTML
