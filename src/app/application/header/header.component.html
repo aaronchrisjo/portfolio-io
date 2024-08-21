@@ -17,9 +17,9 @@
   <!-- Desktop Navigation Links -->
   <nav class="hidden md:flex items-center gap-12">
     <!-- Home, About, Templates links with the smooth underline animation -->
-<a routerLink="/home" routerLinkActive="active" class="hover:text-gray-400 hover:scale-110 transition-transform duration-300">Home</a>
-<a routerLink="/about" routerLinkActive="active" class="hover:text-gray-400 hover:scale-110 transition-transform duration-300">About</a>
-<a *ngIf="(isAuthenticated$ | async)" routerLink="/all-template" routerLinkActive="active" class="hover:text-gray-400 hover:scale-110 transition-transform duration-300">Templates</a>
+    <a routerLink="/home" routerLinkActive="active" class="hover:text-gray-400 hover:scale-110 transition-transform duration-300">Home</a>
+    <a routerLink="/about" routerLinkActive="active" class="hover:text-gray-400 hover:scale-110 transition-transform duration-300">About</a>
+    <a *ngIf="(isAuthenticated$ | async)" routerLink="/all-template" routerLinkActive="active" class="hover:text-gray-400 hover:scale-110 transition-transform duration-300">Templates</a>
 
     <button *ngIf="(isAuthenticated$ | async)" routerLink="/favorites" class="relative flex items-center justify-center w-10 h-10 rounded-full bg-red-700 text-white shadow-md hover:bg-red-600 transition-transform duration-300 hover:scale-95">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
