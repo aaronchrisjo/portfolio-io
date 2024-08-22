@@ -1,12 +1,24 @@
 <div class="min-h-screen p-8 bg-black text-white">
-  <div class="max-w-3xl mx-auto">
+  <div class="max-w-3xl mx-auto zoom-in">
     <!-- Heading -->
     <h2 class="text-4xl font-bold text-center text-gray-200 mb-10">Favorites</h2>
 
     <!-- No Favorites Message -->
-    <div *ngIf="favorites.length === 0" class="text-center text-gray-600">
-      <p>You have no favorite products.</p>
+    <div *ngIf="favorites.length === 0" class="text-center text-gray-400 mb-20">
+      <p>You have no favorite products yet.</p>
     </div>
+    <div *ngIf="favorites.length === 0" class="text-center mt-20">
+      <a 
+        routerLink="/all-template"
+        (click)="scrollTop()" 
+        class="text-2xl font-semibold text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out flex items-center justify-center">
+        Explore templates to add here 
+        <svg class="w-6 h-6 ml-2 text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6l6 6-6 6"></path>
+        </svg>
+      </a>
+    </div>
+      
 
     <!-- Favorites List -->
     <div *ngFor="let product of favorites" class="bg-gray-800 p-6 rounded-lg shadow-md mb-6 flex items-center transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:bg-gray-700">

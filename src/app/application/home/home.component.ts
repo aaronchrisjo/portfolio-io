@@ -20,6 +20,9 @@ export class HomeComponent implements OnInit {
         this.username = null;
       }
     });
+
+    // Initialize scroll listener
+    this.updateSections(window.scrollY);
   }
 
   @HostListener('mousemove', ['$event'])
@@ -30,7 +33,26 @@ export class HomeComponent implements OnInit {
     this.transformStyle = `translate(${x}px, ${y}px)`;
   }
 
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    this.updateSections(window.scrollY);
+  }
+
   scrollTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  private updateSections(scrollPosition: number): void {
+    const sections = Array.from(document.querySelectorAll('.step-section')) as HTMLElement[];
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+      const sectionHeight = section.offsetHeight;
+
+      if (scrollPosition > (sectionTop - window.innerHeight / 1.2)) {
+        section.classList.add('visible');
+      } else {
+        section.classList.remove('visible');
+      }
+    });
   }
 }

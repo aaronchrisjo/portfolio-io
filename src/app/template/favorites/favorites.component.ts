@@ -47,4 +47,8 @@ export class FavoritesComponent implements OnInit {
   closeModal(): void {
     this.selectedProduct = null;
   }
+
+  scrollTop(){
+    window.scrollTo({top:0, behavior:'smooth'})
+  }
 }
