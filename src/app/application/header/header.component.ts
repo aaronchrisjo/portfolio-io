@@ -49,6 +49,6 @@ export class HeaderComponent {
   }
 
   settingsTemp(){
-    alert('Settings page still under development. ')
+    alert('This page is still under development. ')
   }
 }

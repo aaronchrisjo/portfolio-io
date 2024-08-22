@@ -16,7 +16,6 @@
 
   <!-- Desktop Navigation Links -->
   <nav class="hidden md:flex items-center gap-12">
-    <!-- Home, About, Templates links with the smooth underline animation -->
     <a routerLink="/home" routerLinkActive="active" class="hover:text-gray-400 hover:scale-110 transition-transform duration-300">Home</a>
     <a routerLink="/about" routerLinkActive="active" class="hover:text-gray-400 hover:scale-110 transition-transform duration-300">About</a>
     <a *ngIf="(isAuthenticated$ | async)" routerLink="/all-template" routerLinkActive="active" class="hover:text-gray-400 hover:scale-110 transition-transform duration-300">Templates</a>
@@ -37,9 +36,9 @@
       </button>
 
       <!-- Dropdown Menu -->
-      <div *ngIf="isDropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-20 border border-gray-200">
-        <a (click)="settingsTemp()" routerLink="/settings" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 rounded-t-lg transition-transform duration-150 hover:scale-95">Settings</a>
-        <button (click)="onLogout()" class="w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 rounded-b-lg transition-transform duration-150 hover:scale-95">Logout</button>
+      <div *ngIf="isDropdownOpen" class="absolute right-0 mt-2 w-48 bg-black bg-opacity-90 rounded-lg shadow-lg z-20 border border-gray-700">
+        <button (click)="settingsTemp()" routerLink="/settings" class="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 rounded-t-lg transition-transform duration-150 hover:scale-100">My Contribuitons</button>
+        <button (click)="onLogout()" class="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 rounded-b-lg transition-transform duration-150 hover:scale-100">Logout</button>
       </div>
     </div>
 
@@ -77,23 +76,10 @@
       </button>
 
       <!-- Dropdown Menu -->
-      <div *ngIf="isDropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 border border-gray-200">
-        <a routerLink="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-t-md transition-transform duration-150 hover:scale-105">Settings</a>
-        <button (click)="onLogout()" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-b-md transition-transform duration-150 hover:scale-105">Logout</button>
+      <div *ngIf="isDropdownOpen" class="absolute right-0 mt-2 w-48 bg-black bg-opacity-90 rounded-lg shadow-lg z-20 border border-gray-700">
+        <button (click)="settingsTemp()" routerLink="/settings" class="block px-4 py-2 text-sm text-white hover:bg-gray-700 rounded-t-lg transition-transform duration-150 hover:scale-95">My Contributions</button>
+        <button (click)="onLogout()" class="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 rounded-b-lg transition-transform duration-150 hover:scale-95">Logout</button>
       </div>
     </div>
-
-    <ng-template #guestOptions>
-      <button routerLink="/signup" class="relative inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
-        <span class="relative px-5 py-2.5 transition-all ease-in duration-300 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 hover:scale-95">
-          Sign Up
-        </span>
-      </button>
-      <button routerLink="/login" class="relative inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
-        <span class="relative px-5 py-2.5 transition-all ease-in duration-300 bg-white text-black rounded-md group-hover:bg-opacity-0 hover:scale-95">
-          Login
-        </span>
-      </button>
-    </ng-template>
   </nav>
 </div>
