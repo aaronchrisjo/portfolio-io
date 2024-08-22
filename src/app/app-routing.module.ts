@@ -13,6 +13,8 @@ const routes: Routes = [
   
   {path:'explore', component:ExploreComponent},
   {path:'all-template', component:AllTemplatesComponent, canActivate:[authGuard]},
+
+  { path: 'auth', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
   
 ];
 

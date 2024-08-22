@@ -10,6 +10,7 @@ import { firebaseConfig } from '../../environments/firebaseConfig';
 import { AuthService } from '../services/auth.service';
 import { appConfig } from '../app.config';
 import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { LoginComponent } from './login/login.component';
     AuthenticationRoutingModule,
     ApplicationModule,
     ReactiveFormsModule,
-    
+   
   ],
   providers:[
     ...appConfig.providers,
