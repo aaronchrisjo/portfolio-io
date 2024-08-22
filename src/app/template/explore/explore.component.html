@@ -1,8 +1,8 @@
-<div class="min-h-screen bg-black text-white p-8">
+<div class="min-h-screen bg-black text-white p-8 fade-in">
     <div class="max-w-6xl mx-auto gap-6">
       <h1 class="text-4xl font-extrabold text-gray-100 mb-8 text-center">Explore Our Latest Templates</h1>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
-        <div *ngFor="let product of products" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-95 hover:shadow-2xl">
+        <div *ngFor="let product of products" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-95 hover:shadow-2xl" (click)="onClickUnready()">
           <img [src]="product.imageUrl" [alt]="product.name" class="w-full h-48 object-cover">
           <div class="p-6">
             <h2 class="text-2xl font-semibold text-gray-300 mb-2">{{ product.name }}</h2>

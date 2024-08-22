@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-black text-white p-8">
+<div class="min-h-screen bg-black text-white p-8 fade-in">
   <!-- Header with filter options and upload button -->
   <header class="bg-black text-white bg-opacity-20 p-4 mb-6 rounded-lg">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
@@ -50,7 +50,7 @@
   </header>
 
   <!-- Content for templates -->
-  <div class="max-w-6xl mx-auto">
+  <div class="max-w-6xl mx-auto fade-in">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div *ngFor="let product of displayedProducts" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl" (click)="openModal(product)">
         <img [src]="product.imageUrl" [alt]="product.name" class="w-full h-48 object-cover">

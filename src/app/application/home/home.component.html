@@ -7,7 +7,7 @@
 
   <!-- Overlay Content -->
   <div class="flex flex-col items-center justify-center min-h-screen relative z-10 p-8 text-center">
-    <h1 class="text-5xl font-extrabold text-white mb-4">Welcome to portfolio.io,<br> {{ username ? username : 'User' }}</h1>
+    <h1 class="text-5xl font-extrabold text-white mb-4 fade-in">Welcome to portfolio.io,<br> {{ username ? username : 'User' }}</h1>
     <p class="text-xl text-white mb-8">Discover and choose the perfect template to showcase your work.</p>
     <div class="flex flex-wrap justify-center gap-6">
       <a (click)="scrollTop()" routerLink="/explore" class="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-3 px-8 rounded-full shadow-lg hover:from-blue-600 hover:to-blue-800 transition duration-300 ease-in-out text-lg font-semibold transform hover:scale-105">
@@ -19,3 +19,17 @@
     </div>
   </div>
 </div>
+
+<!-- Step Sections -->
+<section class="step-section text-white text-center" id="step1">
+  <h2 class="text-4xl font-bold">1. Choose Your Template</h2>
+  <p class="text-2xl p-10 px-32">Explore our curated collection of elegant and sophisticated templates designed to elevate your portfolio. Select the perfect template to embark on your journey of creating a standout professional portfolio.</p>
+</section>
+<section class="step-section text-white text-center" id="step2">
+  <h2 class="text-4xl font-bold">2. Customize Your Portfolio</h2>
+  <p class="text-lg">Personalize your chosen template with your content.</p>
+</section>
+<section class="step-section text-white text-center" id="step3">
+  <h2 class="text-4xl font-bold">3. Publish and Share</h2>
+  <p class="text-lg">Publish your portfolio and share it with the world.</p>
+</section>
