@@ -17,7 +17,7 @@ export class ExploreComponent implements OnInit {
   }
 
   loadLatestProducts(): void {
-    this.productService.getLatestProducts(6).subscribe(
+    this.productService.getLatestProducts(9).subscribe(
       products => {
         this.products = products;
       },
