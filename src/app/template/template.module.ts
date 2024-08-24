@@ -8,6 +8,7 @@ import { DetailsComponent } from './details/details.component';
 import { UploadTemplateComponent } from './upload-template/upload-template.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { MyContributionsComponent } from './my-contributions/my-contributions.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FavoritesComponent } from './favorites/favorites.component';
     AllTemplatesComponent,
     DetailsComponent,
     UploadTemplateComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    MyContributionsComponent
   ],
   imports: [
     CommonModule,

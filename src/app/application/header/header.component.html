@@ -37,7 +37,7 @@
 
       <!-- Dropdown Menu -->
       <div *ngIf="isDropdownOpen" class="absolute right-0 mt-2 w-48 bg-black bg-opacity-90 rounded-lg shadow-lg z-20 border border-gray-700">
-        <button (click)="settingsTemp()" routerLink="/settings" class="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 rounded-t-lg transition-transform duration-150 hover:scale-100">My Contribuitons</button>
+        <button routerLink="/my-contributions" class="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 rounded-t-lg transition-transform duration-150 hover:scale-100">My Contribuitons</button>
         <button (click)="onLogout()" class="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 rounded-b-lg transition-transform duration-150 hover:scale-100">Logout</button>
       </div>
     </div>

@@ -1,0 +1,31 @@
+<div class="min-h-screen bg-black text-white">
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center p-8">
+      <p class="text-xl font-semibold text-white">Loading your contributions...</p>
+    </div>
+    
+    <!-- Error State -->
+    <div *ngIf="error" class="text-center p-8 bg-red-700 border border-red-800 rounded-lg">
+      <p class="text-lg font-medium">{{ error }}</p>
+    </div>
+    
+    <!-- Content State -->
+    <div *ngIf="!loading && !error" class="p-8">
+      <h2 class="text-3xl font-bold mb-6 text-center">My Contributions</h2>
+      <div class="grid grid-cols-1 gap-6 mt-10">
+        <div *ngFor="let product of products" class="bg-black rounded-lg flex ">
+          <!-- Product Image -->
+          <img [src]="product.imageUrl" alt="{{ product.name }}" class="h-60 rounded-lg hover:scale-95">
+          
+          <!-- Product Details -->
+          <div class="p-6 flex flex-col justify-between">
+            <div>
+              <h3 class="text-3xl font-semibold mb-2">{{ product.name }}</h3>
+              <p class="text-gray-300 text-xl">{{ product.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

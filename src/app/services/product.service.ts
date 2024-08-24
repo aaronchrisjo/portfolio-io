@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Database, ref, query, limitToLast, get, DatabaseReference } from '@angular/fire/database';
-import { Observable, combineLatest, of } from 'rxjs';
+import { Database, ref, query, limitToLast, orderByChild, equalTo, get, DatabaseReference } from '@angular/fire/database';
+import { Observable, combineLatest, of, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Product } from '../interfaces/product';
 import { FavoritesService } from './favorites.service';
+import { AuthService } from './auth.service'; // Import AuthService
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  toggleFavorite(id: string) {
-    throw new Error('Method not implemented.');
-  }
   private productsRef: DatabaseReference;
 
-  constructor(private db: Database, private favoritesService: FavoritesService) {
+  constructor(private db: Database, private favoritesService: FavoritesService, private authService: AuthService) {
     this.productsRef = ref(this.db, 'products');
   }
 
@@ -52,62 +50,81 @@ export class ProductService {
     );
   }
 
+  getUserProducts(): Observable<Product[]> {
+    return this.authService.user$.pipe(
+      switchMap(user => {
+        if (!user) {
+          return of([]);
+        }
+        const userProductsQuery = query(this.productsRef, orderByChild('userId'), equalTo(user.uid));
+        return from(get(userProductsQuery)).pipe(
+          map(snapshot => {
+            if (snapshot.exists()) {
+              const data = snapshot.val();
+              return Object.entries(data).map(([key, value]: [string, any]) => ({
+                id: key,
+                name: value.name,
+                description: value.description,
+                imageUrl: value.imageUrl,
+                detailsUrl: value.detailsUrl,
+                category: value.category,
+                pageUrl: value.pageUrl ?? '',
+                technologies: value.technologies ?? [],
+                userId: value.userId
+              })) as Product[];
+            } else {
+              return [];
+            }
+          })
+        );
+      })
+    );
+  }
+
   private getAllProducts(): Observable<Product[]> {
-    return new Observable(observer => {
-      get(this.productsRef).then(snapshot => {
+    return from(get(this.productsRef)).pipe(
+      map(snapshot => {
         if (snapshot.exists()) {
           const data = snapshot.val();
-          const products: Product[] = Object.entries(data).map(([key, value]: [string, any]) => ({
+          return Object.entries(data).map(([key, value]: [string, any]) => ({
             id: key,
             name: value.name,
             description: value.description,
             imageUrl: value.imageUrl,
             detailsUrl: value.detailsUrl,
             category: value.category,
-            pageUrl: value.pageUrl ?? '', // Include new field with a default empty string
-            technologies: value.technologies ?? [], // Include new field with a default empty array
-            userId: value.userId // Include the userId field
-          }));
-          observer.next(products);
+            pageUrl: value.pageUrl ?? '',
+            technologies: value.technologies ?? [],
+            userId: value.userId
+          })) as Product[];
         } else {
-          observer.next([]);
+          return [];
         }
-        observer.complete();
-      }).catch(error => {
-        console.error('Error fetching products:', error);
-        observer.error(error);
-      });
-    });
+      })
+    );
   }
 
   private getLatestProductsFromDB(limit: number): Observable<Product[]> {
-    return new Observable(observer => {
-      const latestProductsQuery = query(this.productsRef, limitToLast(limit));
-      
-      get(latestProductsQuery).then(snapshot => {
+    const latestProductsQuery = query(this.productsRef, limitToLast(limit));
+    return from(get(latestProductsQuery)).pipe(
+      map(snapshot => {
         if (snapshot.exists()) {
           const data = snapshot.val();
-          const products: Product[] = Object.entries(data).map(([key, value]: [string, any]) => ({
+          return Object.entries(data).map(([key, value]: [string, any]) => ({
             id: key,
             name: value.name,
             description: value.description,
             imageUrl: value.imageUrl,
             detailsUrl: value.detailsUrl,
             category: value.category,
-            pageUrl: value.pageUrl ?? '', // Include new field with a default empty string
-            technologies: value.technologies ?? [], // Include new field with a default empty array
-            userId: value.userId // Include the userId field
-          }));
-          
-          observer.next(products.reverse());
+            pageUrl: value.pageUrl ?? '',
+            technologies: value.technologies ?? [],
+            userId: value.userId
+          })) as Product[];
         } else {
-          observer.next([]);
+          return [];
         }
-        observer.complete();
-      }).catch(error => {
-        console.error('Error fetching latest products:', error);
-        observer.error(error);
-      });
-    });
+      })
+    );
   }
 }
