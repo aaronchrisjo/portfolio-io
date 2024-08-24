@@ -8,4 +8,5 @@ export interface Product {
   isFavorite?: boolean;
   pageUrl: string;
   technologies: string[];
+  userId: string; // Add this field
 }

@@ -4,6 +4,7 @@ import { Database, push, ref } from '@angular/fire/database';
 import { Storage, ref as storageRef, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
 import { inject } from '@angular/core';
 import { Location } from '@angular/common';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-upload-template',
@@ -13,6 +14,7 @@ import { Location } from '@angular/common';
 export class UploadTemplateComponent {
   private db: Database = inject(Database);
   private storage: Storage = inject(Storage);
+  private auth: Auth = inject(Auth);
   productForm: FormGroup;
   selectedFile: File | null = null;
   imagePreviewUrl: string | ArrayBuffer | null = null;
@@ -46,6 +48,15 @@ export class UploadTemplateComponent {
     if (this.productForm.valid && this.selectedFile) {
       const { name, description, detailsUrl, category, pageUrl, technologies } = this.productForm.value;
 
+      // Get the current authenticated user
+      const currentUser = this.auth.currentUser;
+      if (!currentUser) {
+        console.error('No user is authenticated.');
+        return;
+      }
+
+      const userId = currentUser.uid;
+
       // Upload the image to Firebase Storage
       const storageRefPath = `images/${this.selectedFile.name}`;
       const fileRef = storageRef(this.storage, storageRefPath);
@@ -73,7 +84,8 @@ export class UploadTemplateComponent {
               detailsUrl,
               category,
               pageUrl,  // New field
-              technologies  // New field
+              technologies,  // New field
+              userId // Include userId in the product data
             };
             const productRef = ref(this.db, 'products');
             await push(productRef, productData);

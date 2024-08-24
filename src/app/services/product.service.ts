@@ -65,7 +65,8 @@ export class ProductService {
             detailsUrl: value.detailsUrl,
             category: value.category,
             pageUrl: value.pageUrl ?? '', // Include new field with a default empty string
-            technologies: value.technologies ?? [] // Include new field with a default empty array
+            technologies: value.technologies ?? [], // Include new field with a default empty array
+            userId: value.userId // Include the userId field
           }));
           observer.next(products);
         } else {
@@ -94,7 +95,8 @@ export class ProductService {
             detailsUrl: value.detailsUrl,
             category: value.category,
             pageUrl: value.pageUrl ?? '', // Include new field with a default empty string
-            technologies: value.technologies ?? [] // Include new field with a default empty array
+            technologies: value.technologies ?? [], // Include new field with a default empty array
+            userId: value.userId // Include the userId field
           }));
           
           observer.next(products.reverse());
