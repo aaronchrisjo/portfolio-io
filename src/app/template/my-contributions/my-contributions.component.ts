@@ -29,7 +29,7 @@ export class MyContributionsComponent implements OnInit {
   }
 
   deleteProduct(productId: string): void {
-    if (confirm('Are you sure you want to delete this portfolio?')) {
+    if (confirm('Are you sure you want to delete this portfolio?  You will have to upload again once deleted.')) {
       this.productService.deleteProduct(productId)
         .then(() => {
           this.products = this.products.filter(product => product.id !== productId);
