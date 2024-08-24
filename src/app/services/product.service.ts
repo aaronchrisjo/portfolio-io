@@ -120,7 +120,8 @@ export class ProductService {
             pageUrl: value.pageUrl ?? '',
             technologies: value.technologies ?? [],
             userId: value.userId
-          })) as Product[];
+          }))
+          .reverse() as Product[];
         } else {
           return [];
         }
