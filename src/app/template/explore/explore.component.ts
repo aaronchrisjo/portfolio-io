@@ -28,7 +28,7 @@ export class ExploreComponent implements OnInit {
   }
 
   onClickUnready(): void {
-    alert('Explore page still under development. Navigate to All-Templates page.');
+    alert('Explore page still under development. Navigate to Portfolios page.');
   }
 
   scrollTop(): void {
