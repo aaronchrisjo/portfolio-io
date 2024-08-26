@@ -12,7 +12,7 @@ const routes: Routes = [
   { path:'about', component: AboutComponent},
   
   {path:'explore', component:ExploreComponent},
-  {path:'all-template', component:AllTemplatesComponent, canActivate:[authGuard]},
+  {path:'all-template', component:AllTemplatesComponent},
 
   { path: 'auth', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
   
