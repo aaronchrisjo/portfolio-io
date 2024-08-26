@@ -15,7 +15,7 @@ const routes: Routes = [
   {path:'details', component:DetailsComponent},
   {path:'upload', component: UploadTemplateComponent, canActivate:[authGuard]},
   {path: 'favorites', component: FavoritesComponent, canActivate:[authGuard]},
-  {path: 'my-contributions', component: MyContributionsComponent},
+  {path: 'my-contributions', component: MyContributionsComponent, canActivate:[authGuard]},
 ];
 
 @NgModule({
