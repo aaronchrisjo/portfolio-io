@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Database, ref, query, limitToLast, orderByChild, equalTo, get, DatabaseReference, remove } from '@angular/fire/database';
+import { Database, ref, query, limitToLast, orderByChild, equalTo, get, DatabaseReference, remove, update } from '@angular/fire/database';
 import { Observable, combineLatest, of, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Product } from '../interfaces/product';
@@ -133,5 +133,11 @@ export class ProductService {
     const productRef = ref(this.db, `products/${productId}`);
     return remove(productRef);
   }
+
+  updateProduct(productId: string, updatedData: Partial<Product>): Promise<void> {
+    const productRef = ref(this.db, `products/${productId}`);
+    return update(productRef, updatedData);
+  }
+  
 
 }

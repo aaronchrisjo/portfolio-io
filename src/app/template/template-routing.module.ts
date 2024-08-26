@@ -9,6 +9,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { MyContributionsComponent } from './my-contributions/my-contributions.component';
 import { authGuard } from '../services/auth.guard';
 
+
 const routes: Routes = [
   {path:'explore', component:ExploreComponent},
   {path:'all-template', component:AllTemplatesComponent},
@@ -21,7 +22,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-     RouterModule.forChild(routes)
+     RouterModule.forChild(routes),
     ],
   exports: [RouterModule]
 })

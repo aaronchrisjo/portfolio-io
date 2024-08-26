@@ -6,7 +6,7 @@ import { ExploreComponent } from './explore/explore.component';
 import { AllTemplatesComponent } from './all-templates/all-templates.component';
 import { DetailsComponent } from './details/details.component';
 import { UploadTemplateComponent } from './upload-template/upload-template.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { MyContributionsComponent } from './my-contributions/my-contributions.component';
 
@@ -23,7 +23,8 @@ import { MyContributionsComponent } from './my-contributions/my-contributions.co
   imports: [
     CommonModule,
     TemplateRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports:[
     AllTemplatesComponent
