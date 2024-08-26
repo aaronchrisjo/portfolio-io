@@ -1,19 +1,15 @@
-/* Make sure the header stays fixed at the top */
-app-header {
+/* app-header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; /* Ensure it's on top of other content */
-    height: 60px; /* Adjust this height based on your header's height */
+    z-index: 1000; 
+    height: 60px; 
 }
-
-/* Main content area should have padding at the top to avoid overlap with the fixed header */
 .main-content {
-    padding-top: 60px; /* This should match the height of your header */
+    padding-top: 60px; 
 }
 
-/* Ensure the footer is placed correctly at the bottom of the page */
 app-footer {
-    margin-top: auto; /* Push the footer to the bottom if using flexbox layout */
-}
+    margin-top: auto; 
+} */
