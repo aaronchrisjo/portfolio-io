@@ -24,10 +24,16 @@
             React
           </button>
           <button (click)="filterProducts('html')" type="button" 
-                  class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform hover:scale-105"
+                  class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform hover:scale-105"
                   [class.text-blue-900]="selectedFilter === 'html'"
                   [class.bg-opacity-50]="selectedFilter === 'html'">
             HTML
+          </button>
+          <button (click)="filterProducts('vue.js')" type="button" 
+                  class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform hover:scale-105"
+                  [class.text-blue-900]="selectedFilter === 'vue.js'"
+                  [class.bg-opacity-50]="selectedFilter === 'vue.js'">
+            Vue
           </button>
         </div>
       </div>
