@@ -31,7 +31,7 @@
       </a>
       
       <!-- Favorites Button -->
-      <button (click)="toggleFavorite()" class="focus:outline-none">
+      <button *ngIf="(isAuthenticated$|async)" (click)="toggleFavorite()" class="focus:outline-none">
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 24 24" 

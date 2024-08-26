@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { Location } from '@angular/common';
 import { FavoritesService } from '../../services/favorites.service';
+import { Observable } from 'rxjs';
+import { Auth, User } from '@angular/fire/auth';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-details',
@@ -11,11 +14,16 @@ import { FavoritesService } from '../../services/favorites.service';
 export class DetailsComponent implements OnInit {
   @Input() product: Product | null = null;
   @Output() closeModal = new EventEmitter<void>();
+  isAuthenticated$: Observable<User | null>;
 
   constructor(
     private location: Location,
-    private favoritesService: FavoritesService
-  ) {}
+    private favoritesService: FavoritesService,
+    private auth: Auth,
+    private authService: AuthService,
+  ) {
+    this.isAuthenticated$ = this.authService.isAuthenticated;
+  }
 
   ngOnInit(): void {
     this.checkIfFavorite();
