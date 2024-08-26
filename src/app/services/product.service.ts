@@ -33,7 +33,7 @@ export class ProductService {
     );
   }
 
-  getLatestProducts(limit: number = 6): Observable<Product[]> {
+  getLatestProducts(limit: number = 9): Observable<Product[]> {
     return this.getLatestProductsFromDB(limit).pipe(
       switchMap(products => 
         combineLatest([
