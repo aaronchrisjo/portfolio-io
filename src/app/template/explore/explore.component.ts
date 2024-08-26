@@ -9,6 +9,8 @@ import { ProductService } from '../../services/product.service';
 })
 export class ExploreComponent implements OnInit {
   products: Product[] = [];
+  selectedProduct: Product | null = null;
+
 
   constructor(private productService: ProductService) {}
 
@@ -33,5 +35,13 @@ export class ExploreComponent implements OnInit {
 
   scrollTop(): void {
     window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  openModal(product:Product):void{
+    this.selectedProduct = product;
+  }
+
+  closeModal():void{
+    this.selectedProduct = null;
   }
 }
