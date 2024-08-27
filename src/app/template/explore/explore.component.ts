@@ -10,6 +10,7 @@ import { ProductService } from '../../services/product.service';
 export class ExploreComponent implements OnInit {
   products: Product[] = [];
   selectedProduct: Product | null = null;
+  loading: boolean = true;
 
 
   constructor(private productService: ProductService) {}
@@ -22,6 +23,7 @@ export class ExploreComponent implements OnInit {
     this.productService.getLatestProducts(9).subscribe(
       products => {
         this.products = products;
+        this.loading = false;
       },
       error => {
         console.error('Error loading latest products:', error);
