@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output, output } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 import { Auth, User } from '@angular/fire/auth';
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   isOpen = false;
   isDropdownOpen = false;
   username: string | null = null;
-
+  
   constructor(
     private authService: AuthService, 
     private router: Router, 
@@ -66,4 +66,5 @@ export class HeaderComponent implements OnInit {
   settingsTemp(): void {
     alert('This page is still under development.');
   }
+
 }
