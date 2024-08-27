@@ -13,6 +13,7 @@ export class AllTemplatesComponent implements OnInit {
   displayedProducts: Product[] = [];
   selectedFilter: string = 'all';
   selectedProduct: Product | null = null;
+  loading: boolean=true;
 
   // Pagination properties
   currentPage: number = 1;
@@ -25,6 +26,7 @@ export class AllTemplatesComponent implements OnInit {
     this.productService.getProducts().subscribe(products => {
       this.products = products;
       this.applyFilterAndPagination(); // Initialize with default filter and pagination
+      this.loading = false;
     });
   }
 
