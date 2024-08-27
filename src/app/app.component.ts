@@ -34,7 +34,7 @@ export class AppComponent {
   }
 
   scrollTopWithOffset(){
-    const heaaderHeight = document.querySelector('app-header')?.clientHeight || 60;
+    const heaaderHeight = document.querySelector('app-header')?.clientHeight || 0;
     window.scrollTo({top:heaaderHeight, behavior:'smooth'})
   }
 }
