@@ -31,7 +31,7 @@ body {
   } */
 
   button, a, input, select, textarea{
-    cursor: url('assets/cursor-cirle.svg'), auto;
+    cursor: url('assets/pointinghand.svg'), auto;
   }
 
   
