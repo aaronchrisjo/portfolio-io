@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
 
@@ -12,8 +12,10 @@ export class ExploreComponent implements OnInit {
   selectedProduct: Product | null = null;
   loading: boolean = true;
 
-
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.loadLatestProducts();
@@ -25,6 +27,7 @@ export class ExploreComponent implements OnInit {
         setTimeout(() => {
           this.products = products;
           this.loading = false;
+          this.cdr.detectChanges(); // Manually trigger change detection
         }, 0);
       },
       error => {
@@ -32,21 +35,27 @@ export class ExploreComponent implements OnInit {
       }
     );
   }
-  
 
   onClickUnready(): void {
     alert('Explore page still under development. Navigate to Portfolios page.');
   }
 
   scrollTop(): void {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  openModal(product:Product):void{
+  openModal(product: Product): void {
+    console.log('Opening modal with product:', product); // Log product details
+    if (!product) {
+      console.error('Product is undefined or null. Cannot open modal.');
+      return;
+    }
     this.selectedProduct = product;
+    console.log('Selected product set to:', this.selectedProduct);
   }
+  
 
-  closeModal():void{
+  closeModal(): void {
     this.selectedProduct = null;
   }
 }
