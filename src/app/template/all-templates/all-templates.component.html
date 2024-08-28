@@ -10,7 +10,7 @@
   <div *ngIf="!loading">
     <!-- Header with filter options and upload button -->
     <header class="bg-black bg-opacity-20 p-6 mb-8 rounded-xl shadow-lg">
-      <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="max-w-8xl mx-auto flex items-center justify-between">
       
         <!-- Button group for filter options -->
         <div class="flex-1 flex justify-center">
@@ -69,8 +69,8 @@
     </header>
 
     <!-- Content for templates -->
-    <div class="max-w-6xl mx-auto fade-in">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="max-w-8xl mx-auto fade-in">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div *ngFor="let product of displayedProducts" class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl" (click)="openModal(product)">
           <img [src]="product.imageUrl" [alt]="product.name" class="w-full h-48 object-cover">
           <div class="p-4">
