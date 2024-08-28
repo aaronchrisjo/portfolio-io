@@ -21,3 +21,7 @@
   .zoom-in {
     animation: zoomIn 0.3s ease-out;
   }
+/* 
+  body{
+    cursor: pointer;
+  } */

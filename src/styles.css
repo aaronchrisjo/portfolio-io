@@ -21,3 +21,17 @@ body {
   .fade-in {
     animation: fadeIn 0.3s ease-out;
   }
+
+  /* body{
+    cursor: url('assets/cursor.svg'),auto;
+  } */
+
+  /* button{
+    cursor: url('assets/cursor.svg'),auto;
+  } */
+/* 
+  button, a, input, select, textarea, img {
+    cursor: url('assets/cursor.svg'), auto;
+  } */
+
+  
