@@ -7,14 +7,28 @@
       <div class="loader"></div>
     </div>
 
-    <!-- Content -->
-    <div *ngIf="!loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
-      <div *ngFor="let product of products" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-95 hover:shadow-2xl" (click)="openModal(product)">
-        <img [src]="product.imageUrl" [alt]="product.name" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h2 class="text-2xl font-semibold text-gray-300 mb-2 text-center" style="user-select:none;">{{ product.name }}</h2>
+    <!-- Marquee for Products -->
+    <div *ngIf="!loading" class="marquee-wrapper mt-10">
+      <om-marquee>
+        <div class="card" #OmMarqueeContent *ngFor="let product of products" (click)="openModal(product)">
+          <img [src]="product.imageUrl" [alt]="product.name" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h2 class="text-2xl font-semibold text-gray-300 mb-2 text-center" style="user-select:none;">{{ product.name }}</h2>
+          </div>
         </div>
-      </div>
+      </om-marquee>
+
+      <om-marquee [reverse]="true">
+        <div class="card" #OmMarqueeContent *ngFor="let product of products" (click)="openModal(product)">
+          <img [src]="product.imageUrl" [alt]="product.name" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h2 class="text-2xl font-semibold text-gray-300 mb-2 text-center" style="user-select:none;">{{ product.name }}</h2>
+          </div>
+        </div>
+      </om-marquee>
+
+      <div class="marquee-gradient left"></div>
+      <div class="marquee-gradient right"></div>
     </div>
   </div>
 
@@ -32,5 +46,5 @@
   </div>
 
   <!-- Product Modal -->
-  <app-details [product]="selectedProduct" (close)="closeModal()"></app-details>
+  <app-details *ngIf="selectedProduct" [product]="selectedProduct" (close)="closeModal()"></app-details>
 </div>

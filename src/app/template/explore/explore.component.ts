@@ -20,16 +20,19 @@ export class ExploreComponent implements OnInit {
   }
 
   loadLatestProducts(): void {
-    this.productService.getLatestProducts(9).subscribe(
+    this.productService.getLatestProducts(12).subscribe(
       products => {
-        this.products = products;
-        this.loading = false;
+        setTimeout(() => {
+          this.products = products;
+          this.loading = false;
+        }, 0);
       },
       error => {
         console.error('Error loading latest products:', error);
       }
     );
   }
+  
 
   onClickUnready(): void {
     alert('Explore page still under development. Navigate to Portfolios page.');

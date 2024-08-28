@@ -15,4 +15,45 @@
       transform: rotate(360deg);
     }
   }
+ 
+
+
+
+  .marquee-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
   
+  .marquee-gradient {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 15%; /* Adjust width for a subtle fade */
+    pointer-events: none;
+  }
+  
+  .marquee-gradient.left {
+    left: 0;
+    background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.2), /* Very subtle color */
+      rgba(0, 0, 0, 0) /* Fully transparent */
+    );
+  }
+  
+  .marquee-gradient.right {
+    right: 0;
+    background-image: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0.2), /* Very subtle color */
+      rgba(0, 0, 0, 0) /* Fully transparent */
+    );
+  }
+  .card {
+    border-radius: 0.75rem;
+    border: 1px solid var(--text-color);
+    padding: 1.5rem;
+  }
