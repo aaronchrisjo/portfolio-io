@@ -9,6 +9,7 @@ import { UploadTemplateComponent } from './upload-template/upload-template.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { MyContributionsComponent } from './my-contributions/my-contributions.component';
+import { NgxMarqueeComponent } from '@omnedia/ngx-marquee';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { MyContributionsComponent } from './my-contributions/my-contributions.co
     CommonModule,
     TemplateRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxMarqueeComponent
   ],
   exports:[
     AllTemplatesComponent
