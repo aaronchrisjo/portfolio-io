@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Database, ref, query, limitToLast, orderByChild, equalTo, get, DatabaseReference, remove, update } from '@angular/fire/database';
 import { Observable, combineLatest, of, from } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { Product } from '../interfaces/product';
 import { FavoritesService } from './favorites.service';
 import { AuthService } from './auth.service'; // Import AuthService
@@ -156,13 +156,31 @@ export class ProductService {
     );
   }
 
-  deleteProduct(productId: string): Promise<void> {
+  deleteProduct(productId: string): Observable<void> {
     const productRef = ref(this.db, `products/${productId}`);
-    return remove(productRef);
+    return from(remove(productRef));
   }
 
-  updateProduct(productId: string, updatedData: Partial<Product>): Promise<void> {
-    const productRef = ref(this.db, `products/${productId}`);
-    return update(productRef, updatedData);
+  // updateProduct(productId: string, updatedData: Partial<Product>): Observable<void> {
+  //   const productRef = ref(this.db, `products/${productId}`);
+  //   return from(update(productRef, updatedData));
+  // }
+  updateProduct(id: string, updatedData: Partial<Product>): Observable<void> {
+    const productRef = ref(this.db, `products/${id}`);
+  
+    // Filter out undefined values
+    const sanitizedData = Object.fromEntries(
+      Object.entries(updatedData).filter(([_, value]) => value !== undefined)
+    );
+  
+    return from(update(productRef, sanitizedData)).pipe(
+      catchError(err => {
+        console.error('Update failed', err);
+        return of(); // Handle the error appropriately
+      })
+    );
   }
+  
+  
+  
 }

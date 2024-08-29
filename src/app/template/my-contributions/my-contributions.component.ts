@@ -10,10 +10,12 @@ import { Product } from '../../interfaces/product';
 })
 export class MyContributionsComponent implements OnInit {
   products: Product[] = [];
+  filteredProducts: Product[] = []; // New property for filtered products
   loading: boolean = true;
   error: string | null = null;
   originalProductData: { [key: string]: Product } = {}; // To store the original data
   isAdmin: boolean = false;
+  searchQuery: string = ''; // New property for search query
 
   constructor(
     private productService: ProductService,
@@ -28,31 +30,29 @@ export class MyContributionsComponent implements OnInit {
   }
 
   private loadProducts(): void {
-    if (this.isAdmin) {
-      this.productService.getAllProducts().subscribe({
-        next: (products: Product[]) => {
-          this.products = products.map(product => ({ ...product, editing: false })); // Add editing flag
-          this.loading = false;
-        },
-        error: (err) => {
-          this.error = 'Failed to load products.';
-          console.error(err);
-          this.loading = false;
-        }
-      });
-    } else {
-      this.productService.getUserProducts().subscribe({
-        next: (products: Product[]) => {
-          this.products = products.map(product => ({ ...product, editing: false })); // Add editing flag
-          this.loading = false;
-        },
-        error: (err) => {
-          this.error = 'Failed to load products.';
-          console.error(err);
-          this.loading = false;
-        }
-      });
-    }
+    const productObservable = this.isAdmin
+      ? this.productService.getAllProducts()
+      : this.productService.getUserProducts();
+
+    productObservable.subscribe({
+      next: (products: Product[]) => {
+        this.products = products.map(product => ({ ...product, editing: false })); // Add editing flag
+        this.filteredProducts = this.products; // Initialize filtered products
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Failed to load products.';
+        console.error(err);
+        this.loading = false;
+      }
+    });
+  }
+
+  filterProducts(): void {
+    const query = this.searchQuery.toLowerCase();
+    this.filteredProducts = this.products.filter(product => 
+      product.name.toLowerCase().includes(query)
+    );
   }
 
   enableEdit(product: Product): void {
@@ -60,37 +60,37 @@ export class MyContributionsComponent implements OnInit {
     product.editing = true;
   }
 
-  saveEdit(product: Product): void {
-    this.productService.updateProduct(product.id, {
-      name: product.name,
-      description: product.description,
-      technologies: product.technologies
-    }).then(() => {
-      product.editing = false; // Exit edit mode
-    }).catch(err => {
-      console.error('Failed to save product:', err);
-      this.error = 'Failed to save product.';
-    });
-  }
-
   cancelEdit(product: Product): void {
-    // Restore original data
-    product.name = this.originalProductData[product.id].name;
-    product.description = this.originalProductData[product.id].description;
-    product.technologies = this.originalProductData[product.id].technologies;
+    const originalProduct = this.originalProductData[product.id];
+    if (originalProduct) {
+      Object.assign(product, originalProduct); // Restore original data
+      delete this.originalProductData[product.id]; // Remove from original data store
+    }
     product.editing = false;
   }
 
-  deleteProduct(productId: string): void {
-    if (confirm('Are you sure you want to delete this portfolio? You will have to upload again once deleted.')) {
-      this.productService.deleteProduct(productId)
-        .then(() => {
-          this.products = this.products.filter(product => product.id !== productId);
-        })
-        .catch(err => {
-          console.error('Failed to delete product:', err);
+  saveEdit(product: Product): void {
+    this.productService.updateProduct(product.id, product).subscribe({
+      next: () => {
+        product.editing = false;
+        this.loadProducts(); // Reload products to ensure data is up-to-date
+      },
+      error: (err) => {
+        this.error = 'Failed to save changes.';
+        console.error(err);
+      }
+    });
+  }
+
+  deleteProduct(id: string): void {
+    if (confirm('Are you sure you want to delete this product?')) {
+      this.productService.deleteProduct(id).subscribe({
+        next: () => this.loadProducts(),
+        error: (err) => {
           this.error = 'Failed to delete product.';
-        });
+          console.error(err);
+        }
+      });
     }
   }
 }
