@@ -64,4 +64,11 @@ export class AuthService {
       throw new Error(error.message || 'An unknown error occurred.');
     }
   }
+
+  // Check if the current user is an admin
+  isAdmin(): boolean {
+    const user = this.currentUser.value;
+    // Assuming that the user role is stored in user metadata or somewhere similar
+    return user?.email === 'admin@duck.com'; 
+  }
 }

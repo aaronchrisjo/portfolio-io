@@ -11,7 +11,8 @@
 
   <!-- Content State -->
   <div *ngIf="!loading && !error" class="p-8">
-    <h2 class="text-3xl font-bold mb-6 text-center">My Contributions</h2>
+    <h2 class="text-3xl font-bold mb-6 text-center" *ngIf="!isAdmin">My Contributions</h2>
+    <h2 class="text-3xl font-bold mb-6 text-center" *ngIf="isAdmin">All Contributions</h2>
     <div class="grid grid-cols-1 gap-6 mt-10">
       <div class="text-xl text-center mt-12 font-semibold text-gray-600" *ngIf="products.length === 0">You have not contributed anything yet</div>
       <div *ngFor="let product of products" class="bg-black rounded-lg flex relative">
