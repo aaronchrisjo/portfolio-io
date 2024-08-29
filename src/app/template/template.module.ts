@@ -11,7 +11,6 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { MyContributionsComponent } from './my-contributions/my-contributions.component';
 
 import { NgxMarqueeComponent } from '@omnedia/ngx-marquee';
-import { NgxSwapyComponent } from '@omnedia/ngx-swapy';
 
 
 
@@ -30,7 +29,6 @@ import { NgxSwapyComponent } from '@omnedia/ngx-swapy';
     ReactiveFormsModule,
     FormsModule,
     NgxMarqueeComponent,
-    NgxSwapyComponent
   ],
   exports:[
     AllTemplatesComponent
