@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
+import { AuthService } from '../../services/auth.service'; // Import AuthService
 import { Product } from '../../interfaces/product';
 
 @Component({
@@ -12,21 +13,46 @@ export class MyContributionsComponent implements OnInit {
   loading: boolean = true;
   error: string | null = null;
   originalProductData: { [key: string]: Product } = {}; // To store the original data
+  isAdmin: boolean = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private authService: AuthService // Inject AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.productService.getUserProducts().subscribe({
-      next: (products: Product[]) => {
-        this.products = products.map(product => ({ ...product, editing: false })); // Add editing flag
-        this.loading = false;
-      },
-      error: (err) => {
-        this.error = 'Failed to load products.';
-        console.error(err);
-        this.loading = false;
-      }
+    this.authService.user$.subscribe(user => {
+      this.isAdmin = this.authService.isAdmin(); // Check if user is admin
+      this.loadProducts();
     });
+  }
+
+  private loadProducts(): void {
+    if (this.isAdmin) {
+      this.productService.getAllProducts().subscribe({
+        next: (products: Product[]) => {
+          this.products = products.map(product => ({ ...product, editing: false })); // Add editing flag
+          this.loading = false;
+        },
+        error: (err) => {
+          this.error = 'Failed to load products.';
+          console.error(err);
+          this.loading = false;
+        }
+      });
+    } else {
+      this.productService.getUserProducts().subscribe({
+        next: (products: Product[]) => {
+          this.products = products.map(product => ({ ...product, editing: false })); // Add editing flag
+          this.loading = false;
+        },
+        error: (err) => {
+          this.error = 'Failed to load products.';
+          console.error(err);
+          this.loading = false;
+        }
+      });
+    }
   }
 
   enableEdit(product: Product): void {

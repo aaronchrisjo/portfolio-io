@@ -16,15 +16,96 @@ export class ProductService {
     this.productsRef = ref(this.db, 'products');
   }
 
+  getAllProducts(): Observable<Product[]> {
+    return from(get(this.productsRef)).pipe(
+      map(snapshot => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          return Object.entries(data).map(([key, value]: [string, any]) => ({
+            id: key,
+            name: value.name,
+            description: value.description,
+            imageUrl: value.imageUrl,
+            detailsUrl: value.detailsUrl,
+            category: value.category,
+            pageUrl: value.pageUrl ?? '',
+            technologies: value.technologies ?? [],
+            userId: value.userId
+          })) as Product[];
+        } else {
+          return [];
+        }
+      })
+    );
+  }
+
   getProducts(): Observable<Product[]> {
-    return this.getAllProducts().pipe(
-      switchMap(products => 
+    return this.authService.user$.pipe(
+      switchMap(user => {
+        if (this.authService.isAdmin()) {
+          return this.getAllProducts();
+        } else if (user) {
+          // Regular users should see all products here
+          return this.getAllProducts();
+        } else {
+          return of([]);
+        }
+      }),
+      switchMap(products =>
         combineLatest([
           of(products),
           this.favoritesService.getFavorites()
         ])
       ),
-      map(([products, favorites]) => 
+      map(([products, favorites]) =>
+        products.map(product => ({
+          ...product,
+          isFavorite: favorites.includes(product.id)
+        }))
+      )
+    );
+  }
+
+  getUserProducts(): Observable<Product[]> {
+    return this.authService.user$.pipe(
+      switchMap(user => {
+        if (!user) {
+          return of([]);
+        }
+        // Regular users see their own products, admins see all
+        if (this.authService.isAdmin()) {
+          return this.getAllProducts();
+        } else {
+          const userProductsQuery = query(this.productsRef, orderByChild('userId'), equalTo(user.uid));
+          return from(get(userProductsQuery)).pipe(
+            map(snapshot => {
+              if (snapshot.exists()) {
+                const data = snapshot.val();
+                return Object.entries(data).map(([key, value]: [string, any]) => ({
+                  id: key,
+                  name: value.name,
+                  description: value.description,
+                  imageUrl: value.imageUrl,
+                  detailsUrl: value.detailsUrl,
+                  category: value.category,
+                  pageUrl: value.pageUrl ?? '',
+                  technologies: value.technologies ?? [],
+                  userId: value.userId
+                })) as Product[];
+              } else {
+                return [];
+              }
+            })
+          );
+        }
+      }),
+      switchMap(products =>
+        combineLatest([
+          of(products),
+          this.favoritesService.getFavorites()
+        ])
+      ),
+      map(([products, favorites]) =>
         products.map(product => ({
           ...product,
           isFavorite: favorites.includes(product.id)
@@ -47,60 +128,6 @@ export class ProductService {
           isFavorite: favorites.includes(product.id)
         }))
       )
-    );
-  }
-
-  getUserProducts(): Observable<Product[]> {
-    return this.authService.user$.pipe(
-      switchMap(user => {
-        if (!user) {
-          return of([]);
-        }
-        const userProductsQuery = query(this.productsRef, orderByChild('userId'), equalTo(user.uid));
-        return from(get(userProductsQuery)).pipe(
-          map(snapshot => {
-            if (snapshot.exists()) {
-              const data = snapshot.val();
-              return Object.entries(data).map(([key, value]: [string, any]) => ({
-                id: key,
-                name: value.name,
-                description: value.description,
-                imageUrl: value.imageUrl,
-                detailsUrl: value.detailsUrl,
-                category: value.category,
-                pageUrl: value.pageUrl ?? '',
-                technologies: value.technologies ?? [],
-                userId: value.userId
-              })) as Product[];
-            } else {
-              return [];
-            }
-          })
-        );
-      })
-    );
-  }
-
-  private getAllProducts(): Observable<Product[]> {
-    return from(get(this.productsRef)).pipe(
-      map(snapshot => {
-        if (snapshot.exists()) {
-          const data = snapshot.val();
-          return Object.entries(data).map(([key, value]: [string, any]) => ({
-            id: key,
-            name: value.name,
-            description: value.description,
-            imageUrl: value.imageUrl,
-            detailsUrl: value.detailsUrl,
-            category: value.category,
-            pageUrl: value.pageUrl ?? '',
-            technologies: value.technologies ?? [],
-            userId: value.userId
-          })) as Product[];
-        } else {
-          return [];
-        }
-      })
     );
   }
 
@@ -138,6 +165,4 @@ export class ProductService {
     const productRef = ref(this.db, `products/${productId}`);
     return update(productRef, updatedData);
   }
-  
-
 }
