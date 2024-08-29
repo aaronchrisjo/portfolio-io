@@ -10,4 +10,5 @@ export interface Product {
   technologies: string[];
   userId: string; 
   editing?: boolean;
+  addedAt: Date;
 }
