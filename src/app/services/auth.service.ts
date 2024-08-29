@@ -69,6 +69,6 @@ export class AuthService {
   isAdmin(): boolean {
     const user = this.currentUser.value;
     // Assuming that the user role is stored in user metadata or somewhere similar
-    return user?.email === 'admin@duck.com'; // Example condition
+    return user?.email === 'admin@duck.com'; 
   }
 }
