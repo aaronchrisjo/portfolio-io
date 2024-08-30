@@ -7,7 +7,7 @@ export interface Product {
   category: string;
   isFavorite?: boolean;
   pageUrl: string;
-  technologies: string[];
+  technologies: string ;
   userId: string; 
   editing?: boolean;
   addedAt: Date;
