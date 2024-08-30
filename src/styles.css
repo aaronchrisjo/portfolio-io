@@ -23,7 +23,7 @@ body {
   }
 
   body{
-    cursor: url('assets/cursor.svg'),auto;
+    cursor: url('assets/cursor.png'),auto;
   }
 
   /* button{
@@ -31,7 +31,7 @@ body {
   } */
 
   button, a, input, select, textarea{
-    cursor: url('assets/pointinghand.svg'), auto;
+    cursor: url('assets/pointinghand.png'), auto;
   }
 
   

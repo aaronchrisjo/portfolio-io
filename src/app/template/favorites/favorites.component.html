@@ -5,14 +5,14 @@
 
     <!-- No Favorites Message -->
     <div *ngIf="favorites.length === 0" class="text-center text-gray-400 mb-20">
-      <p>You have no favorite products yet.</p>
+      <p>You have no favorites yet.</p>
     </div>
     <div *ngIf="favorites.length === 0" class="text-center mt-20">
       <a 
         routerLink="/all-template"
         (click)="scrollTop()" 
         class="text-2xl font-semibold text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out flex items-center justify-center">
-        Explore templates to add here 
+        Explore more portfolios to add here 
         <svg class="w-6 h-6 ml-2 text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6l6 6-6 6"></path>
         </svg>
