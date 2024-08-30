@@ -58,7 +58,7 @@
         <button 
           (click)="uploadWarning()"
           routerLink="/upload" 
-          class="flex items-center px-4 py-2 bg-gradient-to-r from-green-700 to-teal-800 text-white font-semibold rounded-lg shadow-xl hover:from-green-600 hover:to-teal-700 transition-transform duration-300 ease-in-out transform hover:scale-95">
+          class="flex items-center px-4 py-2 bg-teal-800 text-white font-semibold rounded-lg shadow-xl hover:from-green-600 hover:to-teal-700 transition-transform duration-300 ease-in-out transform hover:scale-95">
           <!-- Plus Icon -->
           <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
@@ -71,18 +71,25 @@
     <!-- Content for templates -->
     <div class="max-w-8xl mx-auto fade-in">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div *ngFor="let product of displayedProducts" class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl" (click)="openModal(product)">
+        <div *ngFor="let product of displayedProducts" 
+             class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl" 
+             (click)="openModal(product)">
           <img [src]="product.imageUrl" [alt]="product.name" class="w-full h-48 object-cover">
           <div class="p-4">
             <h2 class="text-2xl font-bold text-gray-200 mb-2">{{ product.name }}</h2>
-            <p class="text-gray-400 font-semibold mb-2">{{ product.technologies }}</p>
-            <!-- <button (click)="openModal(product)" 
-              class="bg-blue-800 text-white py-2 px-4 rounded-full shadow-lg hover:bg-blue-700 transition-transform duration-300 ease-in-out transform hover:scale-105">
-              View Details
-            </button> -->
+            <div class="flex flex-wrap gap-2">
+              <span *ngFor="let tech of product.technologies.split(',')" 
+                class="bg-gradient-to-r from-green-800 to-teal-900 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 hover:bg-gradient-to-l">
+                {{ tech.trim() }}
+              </span>
+
+            </div>
+            
           </div>
         </div>
       </div>
+    
+    
 
       <!-- Pagination Controls -->
       <div class="flex justify-center mt-8 space-x-2">

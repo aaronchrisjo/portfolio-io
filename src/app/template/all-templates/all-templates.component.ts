@@ -22,13 +22,28 @@ export class AllTemplatesComponent implements OnInit {
 
   constructor(private productService: ProductService) {}
 
+  // ngOnInit(): void {
+  //   this.productService.getProducts().subscribe(products => {
+  //     this.products = products;
+  //     this.applyFilterAndPagination(); // Initialize with default filter and pagination
+  //     this.loading = false;
+  //   });
+  // }
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => {
-      this.products = products;
+      this.products = products.map(product => {
+        // Check if the technologies field is an array, then convert it to a comma-separated string
+        if (Array.isArray(product.technologies)) {
+          product.technologies = product.technologies.join(', ');
+        }
+        return product;
+      });
+  
       this.applyFilterAndPagination(); // Initialize with default filter and pagination
       this.loading = false;
     });
   }
+  
 
   filterProducts(category: string): void {
     this.selectedFilter = category;
