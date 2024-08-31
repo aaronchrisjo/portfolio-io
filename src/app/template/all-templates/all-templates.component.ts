@@ -22,13 +22,6 @@ export class AllTemplatesComponent implements OnInit {
 
   constructor(private productService: ProductService) {}
 
-  // ngOnInit(): void {
-  //   this.productService.getProducts().subscribe(products => {
-  //     this.products = products;
-  //     this.applyFilterAndPagination(); // Initialize with default filter and pagination
-  //     this.loading = false;
-  //   });
-  // }
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => {
       this.products = products.map(product => {
