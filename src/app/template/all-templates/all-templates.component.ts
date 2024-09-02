@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
+import { AuthService } from '../../services/auth.service';
+import { Observable } from 'rxjs';
+import { User } from 'firebase/auth';
 
 @Component({
   selector: 'app-all-templates',
@@ -14,13 +17,16 @@ export class AllTemplatesComponent implements OnInit {
   selectedFilter: string = 'all';
   selectedProduct: Product | null = null;
   loading: boolean=true;
+  isAuthenticated$: Observable<User | null>;
 
   // Pagination properties
   currentPage: number = 1;
   itemsPerPage: number = 24;
   totalPages: number = 0;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private authService: AuthService) {
+    this.isAuthenticated$ = this.authService.isAuthenticated;
+  }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => {
@@ -90,4 +96,6 @@ export class AllTemplatesComponent implements OnInit {
   uploadWarning(){
     alert('While uploading, recheck and make sure the details enetered are correct as it cannot be reversed.')
   }
+
+  
 }
