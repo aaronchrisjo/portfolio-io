@@ -75,4 +75,7 @@ export class HeaderComponent implements OnInit {
   openLoginModal(): void {
     this.modalService.open('login');
   }
+  openSignupModal():void{
+    this.modalService.open('signup')
+  }
 }

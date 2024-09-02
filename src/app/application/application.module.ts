@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SignupModalComponent } from './signup-modal/signup-modal.component';
 
 
 
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     AboutComponent,
     FooterComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    SignupModalComponent
   ],
   imports: [
     CommonModule,

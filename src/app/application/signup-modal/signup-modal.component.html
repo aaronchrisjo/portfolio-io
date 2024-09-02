@@ -1,0 +1,129 @@
+<div class="modal-overlay" *ngIf="isModalOpen">
+    <div class="modal-content">
+      <button class="close-btn" (click)="closeModal()">X</button>
+  
+      <div *ngIf="!isEmailFormVisible" class="text-center">
+        <h2 class="text-2xl font-bold mb-6 text-gray-200">Create an Account</h2>
+        
+        <button 
+          (click)="showEmailForm()" 
+          class="w-full bg-blue-900 hover:bg-[#3730a3] text-white py-3 px-4 rounded-lg font-semibold shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3730a3] transition-all duration-300 ease-in-out mb-4 hover:scale-95"
+        >
+          Create with Email
+        </button>
+        
+        <button 
+          (click)="signUpWithGoogle()" 
+          type="button" 
+          class="w-full bg-[#4285F4] hover:bg-[#357ae8] text-white font-medium py-3 px-5 rounded-lg shadow-lg flex items-center justify-center transition-all duration-300 ease-in-out mb-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#357ae8] hover:scale-95"
+        >
+          <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
+            <path fill-rule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clip-rule="evenodd"/>
+          </svg>
+          Sign up with Google
+        </button>
+  
+        <div class="text-center mt-4">
+          <p class="text-gray-500 text-sm">
+            Already have an account? 
+            <a routerLink="/login" class="text-indigo-600 hover:text-indigo-500 font-medium hover:scale-125">
+              Sign in
+            </a>
+          </p>
+        </div>
+      </div>
+  
+      <div *ngIf="isEmailFormVisible">
+        <h2 class="text-2xl font-bold mb-6 text-center text-gray-200">Sign Up</h2>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          <div class="mb-4">
+            <label for="username" class="block text-sm font-medium text-gray-300">Username</label>
+            <input 
+              id="username" 
+              formControlName="username" 
+              type="text" 
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+              placeholder="Choose a username"
+            />
+            <div *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched" class="text-red-600 text-sm mt-1">
+              Username is required.
+            </div>
+          </div>
+  
+          <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+            <input 
+              id="email" 
+              formControlName="email" 
+              type="email" 
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Enter your email"
+            />
+            <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-red-600 text-sm mt-1">
+              Valid email is required.
+            </div>
+          </div>
+  
+          <div class="mb-4">
+            <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
+            <input 
+              id="password" 
+              formControlName="password" 
+              type="password" 
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+              placeholder="Create a password"
+            />
+            <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-red-600 text-sm mt-1">
+              Password is required.
+            </div>
+          </div>
+  
+          <div class="mb-6">
+            <label for="confirmPassword" class="block text-sm font-medium text-gray-300">Confirm Password</label>
+            <input 
+              id="confirmPassword" 
+              formControlName="confirmPassword" 
+              type="password" 
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+              placeholder="Confirm your password"
+            />
+            <div *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched" class="text-red-600 text-sm mt-1">
+              Passwords must match.
+            </div>
+          </div>
+  
+          <button 
+            type="submit" 
+            class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out hover:scale-95"
+          >
+            Sign Up
+          </button>
+  
+          <div class="mt-4 text-center">
+            <span class="text-gray-200 text-sm">or</span>
+          </div>
+  
+          <button 
+            (click)="signUpWithGoogle()" 
+            type="button" 
+            class="w-full bg-[#4285F4] hover:bg-[#357ae8] text-white font-medium py-3 px-5 rounded-lg shadow-lg flex items-center justify-center transition-all duration-300 ease-in-out mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#357ae8] hover:scale-95"
+          >
+            <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
+              <path fill-rule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clip-rule="evenodd"/>
+            </svg>
+            Sign up with Google
+          </button>
+  
+          <div class="mt-4 text-center">
+            <p class="text-gray-600 text-sm">
+              Already a user? 
+              <a routerLink="/login" class="text-indigo-600 hover:text-indigo-500 font-medium">
+                Sign in
+              </a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
