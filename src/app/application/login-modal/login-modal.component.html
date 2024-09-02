@@ -1,0 +1,57 @@
+<div class="modal-overlay" *ngIf="(modalState$ | async) === 'login'">
+  <div class="modal-content">
+    <button class="close-btn" (click)="close()">✕</button>
+    <h2 class="modal-title">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input 
+          id="email" 
+          formControlName="email" 
+          type="email" 
+          class="form-input"
+          placeholder="Enter your email" 
+        />
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+          Valid email is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input 
+          id="password" 
+          formControlName="password" 
+          type="password" 
+          class="form-input"
+          placeholder="Enter your password" 
+        />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+          Password is required.
+        </div>
+      </div>
+
+      <button 
+        type="submit" 
+        class="submit-btn"
+      >
+        Login
+      </button>
+
+      <div class="divider">
+        <span>or</span>
+      </div>
+
+      <button 
+        (click)="googleLogin()" 
+        type="button" 
+        class="google-login-btn"
+      >
+        <svg class="google-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
+          <path fill-rule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clip-rule="evenodd"/>
+        </svg>
+        Login with Google
+      </button>
+    </form>
+  </div>
+</div>

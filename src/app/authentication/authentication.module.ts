@@ -11,12 +11,13 @@ import { AuthService } from '../services/auth.service';
 import { appConfig } from '../app.config';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
+import { LoginModalComponent } from '../application/login-modal/login-modal.component';
 
 
 @NgModule({
   declarations: [
     SignupComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     CommonModule,

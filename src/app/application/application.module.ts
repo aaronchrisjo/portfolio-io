@@ -5,6 +5,9 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { FooterComponent } from './footer/footer.component';
+import { AuthenticationModule } from '../authentication/authentication.module';
+import { LoginModalComponent } from './login-modal/login-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,15 +16,17 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     HomeComponent,
     AboutComponent,
-    FooterComponent
+    FooterComponent,
+    LoginModalComponent
   ],
   imports: [
     CommonModule,
-    ApplicationRoutingModule
+    ApplicationRoutingModule,
+    ReactiveFormsModule
   ],
   exports:[
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
 })
 export class ApplicationModule { }
