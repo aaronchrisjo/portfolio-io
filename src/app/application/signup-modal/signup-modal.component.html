@@ -1,6 +1,8 @@
 <div class="modal-overlay" *ngIf="isModalOpen">
     <div class="modal-content">
-      <button class="close-btn" (click)="closeModal()">X</button>
+      <button (click)="closeModal()" class="absolute top-2 right-2 w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-700 focus:outline-none hover:scale-95">
+        <span class="text-2xl leading-none">&times;</span>
+      </button>
   
       <div *ngIf="!isEmailFormVisible" class="text-center">
         <h2 class="text-2xl font-bold mb-6 text-gray-200">Create an Account</h2>
