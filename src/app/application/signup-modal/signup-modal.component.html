@@ -4,12 +4,12 @@
         <span class="text-2xl leading-none">&times;</span>
       </button>
   
-      <div *ngIf="!isEmailFormVisible" class="text-center">
+      <!-- <div *ngIf="!isEmailFormVisible" class="text-center">
         <h2 class="text-2xl font-bold mb-6 text-gray-200">Create an Account</h2>
         
         <button 
           (click)="showEmailForm()" 
-          class="w-full bg-blue-900 hover:bg-[#3730a3] text-white py-3 px-4 rounded-lg font-semibold shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3730a3] transition-all duration-300 ease-in-out mb-4 hover:scale-95"
+          class="w-full bg-blue-950 hover:bg-[#3730a3] text-white py-3 px-4 rounded-lg font-semibold shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3730a3] transition-all duration-300 ease-in-out mb-4 hover:scale-95"
         >
           Create with Email
         </button>
@@ -26,14 +26,14 @@
         </button>
   
         <div class="text-center mt-4">
-          <p class="text-gray-500 text-sm">
+          <p class="text-gray-200 text-sm font-semibold">
             Already have an account? 
-            <a routerLink="/login" class="text-indigo-600 hover:text-indigo-500 font-medium hover:scale-125">
+            <a (click)="openLoginModal()" class="text-indigo-600 hover:text-indigo-500 font-medium hover:scale-125">
               Sign in
             </a>
           </p>
         </div>
-      </div>
+      </div> -->
   
       <div *ngIf="isEmailFormVisible">
         <h2 class="text-2xl font-bold mb-6 text-center text-gray-200">Sign Up</h2>
@@ -119,7 +119,7 @@
           <div class="mt-4 text-center">
             <p class="text-gray-600 text-sm">
               Already a user? 
-              <a routerLink="/login" class="text-indigo-600 hover:text-indigo-500 font-medium">
+              <a (click)="openLoginModal()" class="text-indigo-600 hover:text-indigo-500 font-medium">
                 Sign in
               </a>
             </p>

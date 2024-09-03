@@ -70,4 +70,8 @@ export class SignupModalComponent implements OnInit {
     this.isModalOpen = false;
     this.modalService.close();
   }
+
+  openLoginModal(): void {
+    this.modalService.open('login');
+  }
 }
