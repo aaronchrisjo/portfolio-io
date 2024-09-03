@@ -1,134 +1,84 @@
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #1F1F1F;
+  border-radius: 8px;
+  padding: 2rem;
+  /* max-width: 500px; */
+  /* width: 100%; */
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background: #555;
+}
+
+.text-gray-200 {
+  color: #e5e5e5;
+}
+
+.text-gray-300 {
+  color: #d1d5db;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+
+
+/* Add styles for the overlay and modal */
+.fixed {
+  position: fixed;
+}
+.bg-opacity-50 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
   }
-  
-  .modal-content {
-    background: #1f1f1f;
-    border-radius: 8px;
-    padding: 2rem;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  .close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: #333;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.2rem;
-  }
-  
-  .close-btn:hover {
-    background: #555;
-  }
-  
-  .modal-title {
-    color: #fff;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
-  .form-label {
-    display: block;
-    color: #ccc;
-    margin-bottom: 0.5rem;
-    font-size: 0.875rem;
-  }
-  
-  .form-input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #444;
-    border-radius: 4px;
-    background: #333;
-    color: #fff;
-    font-size: 0.875rem;
-  }
-  
-  .form-input:focus {
-    border-color: #6b46c1;
-    outline: none;
-    background: #444;
-  }
-  
-  .error-message {
-    color: #e53e3e;
-    font-size: 0.75rem;
-    margin-top: 0.25rem;
-  }
-  
-  .submit-btn {
-    width: 100%;
-    padding: 0.75rem;
-    background: #6b46c1;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .submit-btn:hover {
-    background: #553c9a;
-  }
-  
-  .divider {
-    margin: 1rem 0;
-    text-align: center;
-    color: #fff;
-  }
-  
-  .divider span {
-    font-size: 0.875rem;
-  }
-  
-  .google-login-btn {
-    width: 100%;
-    padding: 0.75rem;
-    background: #dd4b39;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .google-login-btn:hover {
-    background: #c1351d;
-  }
-  
-  .google-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 0.5rem;
-  }
-  
+}
+
+.zoom-in {
+  animation: zoomIn 0.3s ease-out;
+}
+/* 
+body{
+  cursor: pointer;
+} */
