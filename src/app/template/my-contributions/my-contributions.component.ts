@@ -84,13 +84,22 @@ export class MyContributionsComponent implements OnInit {
 
   deleteProduct(id: string): void {
     if (confirm('Are you sure you want to delete this product?')) {
-      this.productService.deleteProduct(id).subscribe({
-        next: () => this.loadProducts(),
-        error: (err) => {
-          this.error = 'Failed to delete product.';
-          console.error(err);
-        }
-      });
+      const username = this.authService.getCurrentUsername();  
+      const confirmationInput = prompt(`Please type "portfolio-io/${username}" to confirm deletion:`);
+  
+      if (confirmationInput === `portfolio-io/${username}`) {
+        this.productService.deleteProduct(id).subscribe({
+          next: () => this.loadProducts(),
+          error: (err) => {
+            this.error = 'Failed to delete product.';
+            console.error(err);
+          }
+        });
+      } else {
+        // If the input doesn't match, notify the user that deletion was cancelled
+        alert('Deletion cancelled. The input did not match the expected format.');
+      }
     }
   }
+  
 }

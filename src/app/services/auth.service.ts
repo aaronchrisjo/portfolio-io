@@ -71,4 +71,9 @@ export class AuthService {
     // Assuming that the user role is stored in user metadata or somewhere similar
     return user?.email === 'admin@duck.com'; 
   }
+
+ getCurrentUsername():string{
+  const user = this.currentUser.value;
+  return user ? user.email ?? '':'';
+ }
 }

@@ -22,16 +22,16 @@ body {
     animation: fadeIn 0.3s ease-out;
   }
 
-  body{
+ 
+ 
+ 
+  /* body{
     cursor: url('assets/cursor.png'),auto;
-  }
-
-  /* button{
-    cursor: url('assets/cursor.svg'),auto;
   } */
 
-  button, a, input, select, textarea{
+
+  /* button, a, input, select, textarea{
     cursor: url('assets/pointinghand.png'), auto;
-  }
+  } */
 
   
