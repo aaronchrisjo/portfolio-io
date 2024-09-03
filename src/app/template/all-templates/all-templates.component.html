@@ -56,6 +56,7 @@
 
         <!-- Upload button -->
         <button 
+          *ngIf="(isAuthenticated$|async)"
           (click)="uploadWarning()"
           routerLink="/upload" 
           class="flex items-center px-4 py-2 bg-teal-800 text-white font-semibold rounded-lg shadow-xl hover:from-green-600 hover:to-teal-700 transition-transform duration-300 ease-in-out transform hover:scale-95">

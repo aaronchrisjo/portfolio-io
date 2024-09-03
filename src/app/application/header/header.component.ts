@@ -1,14 +1,16 @@
-import { Component, EventEmitter, HostListener, OnInit, Output, output } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 import { Auth, User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { onAuthStateChanged } from 'firebase/auth';
+import { ModalService } from '../../services/modal.service';
+import { ModalState } from '../../services/modal.service'; // Import ModalState if you have it
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'] // Corrected from 'styleUrl' to 'styleUrls'
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
   isAuthenticated$: Observable<User | null>;
@@ -16,13 +18,16 @@ export class HeaderComponent implements OnInit {
   isOpen = false;
   isDropdownOpen = false;
   username: string | null = null;
-  
+  modalState$: Observable<ModalState>; // Add this line
+
   constructor(
     private authService: AuthService, 
     private router: Router, 
+    private modalService: ModalService,
     private auth: Auth
   ) {
     this.isAuthenticated$ = this.authService.isAuthenticated;
+    this.modalState$ = this.modalService.modalState$; // Initialize modalState$
     this.router.events.subscribe(() => {
       this.currentRoute = this.router.url;
     });
@@ -66,5 +71,11 @@ export class HeaderComponent implements OnInit {
   settingsTemp(): void {
     alert('This page is still under development.');
   }
-
+  
+  openLoginModal(): void {
+    this.modalService.open('login');
+  }
+  openSignupModal():void{
+    this.modalService.open('signup')
+  }
 }

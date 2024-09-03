@@ -20,12 +20,15 @@
     <a routerLink="/about" routerLinkActive="active" class="hover:text-gray-400 hover:scale-110 transition-transform duration-300">About</a>
     <a *ngIf="(isAuthenticated$ | async)" routerLink="/all-template" routerLinkActive="active" class="hover:text-gray-400 hover:scale-110 transition-transform duration-300">Portfolios</a>
 
-    <button *ngIf="(isAuthenticated$ | async)" routerLink="/favorites" class="relative flex items-center justify-center w-9 h-9 rounded-full bg-red-700 text-white shadow-md hover:bg-red-600 transition-transform duration-300 hover:scale-95">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path fill-rule="evenodd" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" clip-rule="evenodd"/>
-      </svg>
-    </button>
-
+    <button 
+    *ngIf="(isAuthenticated$ | async)" 
+    routerLink="/favorites" 
+    class="relative flex items-center justify-center w-9 h-9 rounded-full bg-transparent text-gray-500 hover:text-red-600 shadow-sm transition-all duration-300 hover:scale-105">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" clip-rule="evenodd"/>
+    </svg>
+  </button>
+  
     <!-- Username Button (Desktop) -->
     <div *ngIf="isAuthenticated$ | async; else guestOptions" class="relative">
       <button (click)="toggleDropdown($event)" class="flex items-center p-2 rounded-full bg-black bg-opacity-20 text-white hover:bg-gray-900 focus:outline-none transition-transform duration-300 hover:scale-105">
@@ -43,12 +46,22 @@
     </div>
 
     <ng-template #guestOptions>
-      <button routerLink="/auth/signup" class="relative inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+      <!-- <button routerLink="/auth/signup" class="relative inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+        <span class="relative px-5 py-2.5 transition-all ease-in duration-300 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 hover:scale-95">
+          Sign Up
+        </span>
+      </button> -->
+      <button (click)="openSignupModal()" class="relative inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
         <span class="relative px-5 py-2.5 transition-all ease-in duration-300 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 hover:scale-95">
           Sign Up
         </span>
       </button>
-      <button routerLink="/auth/login" class="relative inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+      <!-- <button routerLink="/auth/login" class="relative inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+        <span class="relative px-5 py-2.5 transition-all ease-in duration-300 bg-white text-black rounded-md group-hover:bg-opacity-0 hover:scale-95">
+          Login
+        </span>
+      </button> -->
+      <button (click)="openLoginModal()" class="relative inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
         <span class="relative px-5 py-2.5 transition-all ease-in duration-300 bg-white text-black rounded-md group-hover:bg-opacity-0 hover:scale-95">
           Login
         </span>
@@ -83,3 +96,10 @@
     </div>
   </nav>
 </div>
+
+
+<!-- Your app content -->
+
+<!-- Login Modal -->
+<app-login-modal *ngIf="(modalState$ | async) === 'login'"></app-login-modal>
+<app-signup-modal *ngIf="(modalState$ | async) === 'signup'"></app-signup-modal>
