@@ -12,12 +12,12 @@ import { User } from 'firebase/auth';
 })
 export class AllTemplatesComponent implements OnInit {
   products: Product[] = [];
-  filteredProducts: Product[] = [];
   displayedProducts: Product[] = [];
   selectedFilter: string = 'all';
   selectedProduct: Product | null = null;
-  loading: boolean=true;
+  loading: boolean = true;
   isAuthenticated$: Observable<User | null>;
+  searchQuery: string = '';
 
   // Pagination properties
   currentPage: number = 1;
@@ -31,7 +31,7 @@ export class AllTemplatesComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => {
       this.products = products.map(product => {
-        // Check if the technologies field is an array, then convert it to a comma-separated string
+        // Convert technologies field to comma-separated string if it's an array
         if (Array.isArray(product.technologies)) {
           product.technologies = product.technologies.join(', ');
         }
@@ -42,18 +42,32 @@ export class AllTemplatesComponent implements OnInit {
       this.loading = false;
     });
   }
-  
 
   filterProducts(category: string): void {
     this.selectedFilter = category;
     this.applyFilterAndPagination(); // Apply filter and update pagination
   }
 
-  applyFilterAndPagination(): void {
-    const filtered = this.selectedFilter === 'all' ? this.products : this.products.filter(product => product.category === this.selectedFilter);
-    this.totalPages = Math.ceil(filtered.length / this.itemsPerPage);
+  filterSearchProducts(): void {
+    this.applyFilterAndPagination(); // Apply search filter and update pagination
+  }
 
-    // Update the displayed products based on current page
+  applyFilterAndPagination(): void {
+    let filtered = this.products;
+
+    // Apply category filter
+    if (this.selectedFilter !== 'all') {
+      filtered = filtered.filter(product => product.category === this.selectedFilter);
+    }
+
+    // Apply search filter
+    if (this.searchQuery) {
+      const query = this.searchQuery.toLowerCase();
+      filtered = filtered.filter(product => product.name.toLowerCase().includes(query));
+    }
+
+    // Update pagination
+    this.totalPages = Math.ceil(filtered.length / this.itemsPerPage);
     this.updatePage(filtered);
   }
 
@@ -66,14 +80,14 @@ export class AllTemplatesComponent implements OnInit {
   goToPage(page: number): void {
     this.currentPage = page;
     this.applyFilterAndPagination(); // Reapply filter and update pagination
-    window.scrollTo({top:0, behavior:'smooth'})
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   goToNextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.applyFilterAndPagination(); // Reapply filter and update pagination
-      window.scrollTo({top:0, behavior:'smooth'})
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
@@ -81,7 +95,7 @@ export class AllTemplatesComponent implements OnInit {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.applyFilterAndPagination(); // Reapply filter and update pagination
-      window.scrollTo({top:0, behavior:'smooth'})
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
@@ -93,9 +107,7 @@ export class AllTemplatesComponent implements OnInit {
     this.selectedProduct = null;
   }
 
-  uploadWarning(){
-    alert('While uploading, recheck and make sure the details enetered are correct as it cannot be reversed.')
+  uploadWarning(): void {
+    alert('While uploading, recheck and make sure the details entered are correct as it cannot be reversed.');
   }
-
-  
 }
