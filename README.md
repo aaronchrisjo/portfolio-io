@@ -1,12 +1,15 @@
-# Welcome to Portfolio.io
+# <div align="center">Welcome to Portfolio.io 🎊</div>
 
-![Portfolio.io Preview](https://github.com/aaron-gcl-bi/portfolio-io/blob/master/src/assets/portfolio-io-home.png)
 
-## Overview
+
 
 **Portfolio.io** is a dynamic web application designed to showcase and explore a wide variety of developer portfolios. Whether you're searching for inspiration or starting to build your own portfolio, Portfolio.io offers a rich collection of examples to fuel your creativity. This platform features advanced filtering, search capabilities, and pagination to help users find portfolios that best match their interests.
 
-## Key Features
+
+![Portfolio.io Preview](https://github.com/aaron-gcl-bi/portfolio-io/blob/master/src/assets/portfolio-io-home.png)
+
+
+## 🌟 Key Features
 
 - **Explore Portfolios**: Discover portfolios from various creators with diverse styles and technologies.
 - **Search and Filter**: Easily search and filter portfolios by categories such as Angular, React, HTML, Vue.js, and Svelte. Use the search bar to find specific portfolios based on keywords.
@@ -16,7 +19,7 @@
 - **Enhanced Portfolio Management**: Future updates will include additional features for managing and showcasing portfolios.
 - **Advanced Search Options**: Improved search functionality with more filters and sorting options.
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -55,7 +58,7 @@
     The application will be available at `http://localhost:4200`.
 
 
-## Contributing
+## 🤝🏻 Contributing
 
 Contributions are welcome! If you have suggestions or improvements, please fork the repository and submit a pull request.
 
@@ -80,11 +83,11 @@ Contributions are welcome! If you have suggestions or improvements, please fork 
 
 5. **Create a new Pull Request** on GitHub.
 
-## License
+## 📝 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Contact
+## 📩 Contact
 
 For questions or feedback, feel free to reach out:
 
