@@ -25,17 +25,26 @@
     <!-- Border -->
     <rect x="5" y="5" width="210" height="70" fill="none" stroke="#333" stroke-width="3" rx="10" ry="10"/>
 
-    <!-- Icon -->
+    <!-- New Icon -->
     <g fill="none" stroke="#333" stroke-width="3">
-        <!-- Abstract Portfolio -->
-        <path d="M30 25 h15 a5 5 0 0 1 5 5 v20 a5 5 0 0 1 -5 5 h-15 a5 5 0 0 1 -5 -5 v-20 a5 5 0 0 1 5 -5" fill="#333"/>
-        <path d="M30 30 h15 a5 5 0 0 1 5 5 v5 h-15 v-5 a5 5 0 0 1 5 -5" fill="#fff"/>
-        <path d="M40 35 L50 40 L40 45 L30 40 Z" fill="#fff"/>
+        <!-- Circle Background -->
+        <circle cx="40" cy="40" r="20" fill="#333"/>
+        
+        <!-- Portfolio inside the circle -->
+        <rect x="30" y="30" width="20" height="15" rx="5" ry="5" fill="#222"/>
+        <rect x="33" y="23" width="14" height="7" rx="3.5" ry="3.5" fill="#222"/>
+        
+        <!-- White line inside portfolio -->
+        <line x1="30" y1="37" x2="50" y2="37" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+        
+        <!-- Grey line inside portfolio -->
+        <line x1="30" y1="45" x2="50" y2="45" stroke="#444" stroke-width="2.5" stroke-linecap="round"/>
     </g>
 
     <!-- Text -->
-    <text x="60" y="50" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#333" font-weight="bold">Portfolio.io</text>
+    <text x="70" y="50" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#333" font-weight="bold">Portfolio.io</text>
 </svg>
+
 
 
 
