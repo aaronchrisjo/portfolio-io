@@ -1,80 +1,90 @@
 <div class="min-h-screen bg-black text-white p-8 fade-in">
 
   <!-- Loading Indicator -->
-  <div *ngIf="loading" class="flex items-center justify-center min-h-screen">
-    <!-- <div class="text-lg font-semibold">Loading....</div> -->
-     <div class="loader"></div>
+  <div *ngIf="loading" class="flex items-center justify-center min-h-screen absolute inset-0 bg-black bg-opacity-75 z-50">
+    <div class="loader"></div>
   </div>
 
   <!-- Main content that will be displayed after loading -->
   <div *ngIf="!loading">
     <!-- Header with filter options and upload button -->
     <header class="bg-black bg-opacity-20 p-6 mb-8 rounded-xl shadow-lg">
-      <div class="max-w-8xl mx-auto flex items-center justify-between gap-8">
-      
+      <div class="max-w-8xl mx-auto flex flex-col md:flex-row items-center gap-8">
+        
         <!-- Button group for filter options -->
-        <div class="flex-1 flex justify-center">
-          <div class="inline-flex rounded-lg shadow-md" role="group">
+        <div class="w-full md:w-auto flex justify-center mb-4 md:mb-0">
+          <div class="inline-flex flex-wrap rounded-lg shadow-md" role="group">
             <button (click)="filterProducts('all')" type="button" 
-                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform"
-                    [class.text-blue-900]="selectedFilter === 'all'"
-                    [class.bg-opacity-50]="selectedFilter === 'all'">
+                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 transition-transform duration-500 ease-out transform"
+                    [ngClass]="{
+                      'text-blue-900': selectedFilter === 'all',
+                      'bg-opacity-50': selectedFilter === 'all'
+                    }">
               All
             </button>
             <button (click)="filterProducts('angular')" type="button" 
-                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform"
-                    [class.text-blue-900]="selectedFilter === 'angular'"
-                    [class.bg-opacity-50]="selectedFilter === 'angular'">
+                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 transition-transform duration-500 ease-out transform"
+                    [ngClass]="{
+                      'text-blue-900': selectedFilter === 'angular',
+                      'bg-opacity-50': selectedFilter === 'angular'
+                    }">
               Angular
             </button>
             <button (click)="filterProducts('react')" type="button" 
-                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform"
-                    [class.text-blue-900]="selectedFilter === 'react'"
-                    [class.bg-opacity-50]="selectedFilter === 'react'">
+                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 transition-transform duration-500 ease-out transform"
+                    [ngClass]="{
+                      'text-blue-900': selectedFilter === 'react',
+                      'bg-opacity-50': selectedFilter === 'react'
+                    }">
               React
             </button>
             <button (click)="filterProducts('html')" type="button" 
-                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform"
-                    [class.text-blue-900]="selectedFilter === 'html'"
-                    [class.bg-opacity-50]="selectedFilter === 'html'">
+                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 transition-transform duration-500 ease-out transform"
+                    [ngClass]="{
+                      'text-blue-900': selectedFilter === 'html',
+                      'bg-opacity-50': selectedFilter === 'html'
+                    }">
               HTML
             </button>
             <button (click)="filterProducts('vue.js')" type="button" 
-                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform"
-                    [class.text-blue-900]="selectedFilter === 'vue.js'"
-                    [class.bg-opacity-50]="selectedFilter === 'vue.js'">
+                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 transition-transform duration-500 ease-out transform"
+                    [ngClass]="{
+                      'text-blue-900': selectedFilter === 'vue.js',
+                      'bg-opacity-50': selectedFilter === 'vue.js'
+                    }">
               Vue
             </button>
             <button (click)="filterProducts('svelte')" type="button" 
-                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform"
-                    [class.text-blue-900]="selectedFilter === 'svelte'"
-                    [class.bg-opacity-50]="selectedFilter === 'svelte'">
+                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 transition-transform duration-500 ease-out transform"
+                    [ngClass]="{
+                      'text-blue-900': selectedFilter === 'svelte',
+                      'bg-opacity-50': selectedFilter === 'svelte'
+                    }">
               Svelte
             </button>
           </div>
         </div>
-    
+
         <!-- Search bar -->
         <input 
           type="text" 
           [(ngModel)]="searchQuery" 
           (ngModelChange)="filterSearchProducts()" 
           placeholder="Search portfolios..." 
-          class="px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700"
+          class="w-full md:w-auto px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 mb-4 md:mb-0"
         />
         
         <!-- Upload unAuthenticated text -->
-        <p *ngIf="!(isAuthenticated$ | async)" class="text-gray-300 bg-teal-800 px-4 py-2 rounded-lg shadow-md text-center font-semibold tracking-wide animate-pulse hover:bg-teal-700 transition-colors duration-300 ease-in-out">
+        <p *ngIf="!(isAuthenticated$ | async)" class="text-gray-300 bg-teal-800 px-4 py-2 rounded-lg shadow-md text-center font-semibold tracking-wide animate-pulse hover:bg-teal-700 transition-colors duration-300 ease-in-out mb-4 md:mb-0">
           SignUp/Login to Upload
         </p>
         
         <!-- Upload button -->
         <button 
-          *ngIf="(isAuthenticated$|async)"
+          *ngIf="(isAuthenticated$ | async)"
           (click)="uploadWarning()"
           routerLink="/upload" 
           class="flex items-center px-4 py-2 bg-teal-800 text-white font-semibold rounded-lg shadow-xl hover:from-green-600 hover:to-teal-700 transition-transform duration-300 ease-in-out transform hover:scale-95">
-          <!-- Plus Icon -->
           <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
           </svg>
@@ -85,7 +95,7 @@
 
     <!-- Content for templates -->
     <div class="max-w-8xl mx-auto fade-in">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div *ngFor="let product of displayedProducts" 
              class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl" 
              (click)="openModal(product)">
@@ -97,15 +107,11 @@
                 class="bg-gradient-to-r from-green-800 to-teal-900 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 hover:bg-gradient-to-l">
                 {{ tech.trim() }}
               </span>
-
             </div>
-            
           </div>
         </div>
       </div>
     
-    
-
       <!-- Pagination Controls -->
       <div class="flex justify-center mt-8 space-x-2">
         <!-- Previous Page Button -->
