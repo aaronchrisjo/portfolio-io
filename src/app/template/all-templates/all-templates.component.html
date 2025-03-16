@@ -1,9 +1,8 @@
 <div class="min-h-screen bg-black text-white p-8 fade-in">
-
   <!-- Loading Indicator -->
   <div *ngIf="loading" class="flex items-center justify-center min-h-screen">
     <!-- <div class="text-lg font-semibold">Loading....</div> -->
-     <div class="loader"></div>
+    <div class="loader"></div>
   </div>
 
   <!-- Main content that will be displayed after loading -->
@@ -11,72 +10,151 @@
     <!-- Header with filter options and upload button -->
     <header class="bg-black bg-opacity-20 p-6 mb-8 rounded-xl shadow-lg">
       <div class="max-w-8xl mx-auto flex items-center justify-between gap-8">
-      
         <!-- Button group for filter options -->
         <div class="flex-1 flex justify-center">
           <div class="inline-flex rounded-lg shadow-md" role="group">
-            <button (click)="filterProducts('all')" type="button" 
-                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform"
-                    [class.text-blue-900]="selectedFilter === 'all'"
-                    [class.bg-opacity-50]="selectedFilter === 'all'">
+            <button
+              (click)="filterProducts('all')"
+              type="button"
+              class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 transition-transform duration-500 ease-out transform"
+              [class.text-blue-900]="selectedFilter === 'all'"
+              [class.bg-opacity-50]="selectedFilter === 'all'"
+            >
               All
             </button>
-            <button (click)="filterProducts('angular')" type="button" 
-                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform"
-                    [class.text-blue-900]="selectedFilter === 'angular'"
-                    [class.bg-opacity-50]="selectedFilter === 'angular'">
-              Angular
+            <button
+              (click)="filterProducts('angular')"
+              type="button"
+              class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 transition-transform duration-500 ease-out transform"
+              [class.text-blue-900]="selectedFilter === 'angular'"
+              [class.bg-opacity-50]="selectedFilter === 'angular'"
+            >
+              <!-- <img
+                src="assets/icons/Angular-Light.svg"
+                class="inline w-5 h-5 mr-2"
+              />
+              Angular -->
+              <span class="flex items-center">
+                <img
+                  src="assets/icons/Angular-Light.svg"
+                  class="w-5 h-5 mr-2 align-middle"
+                />
+                Angular
+              </span>
             </button>
-            <button (click)="filterProducts('react')" type="button" 
-                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform"
-                    [class.text-blue-900]="selectedFilter === 'react'"
-                    [class.bg-opacity-50]="selectedFilter === 'react'">
-              React
+            <button
+              (click)="filterProducts('react')"
+              type="button"
+              class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 transition-transform duration-500 ease-out transform"
+              [class.text-blue-900]="selectedFilter === 'react'"
+              [class.bg-opacity-50]="selectedFilter === 'react'"
+            >
+              <!-- <img
+                src="assets/icons/React-Light.svg"
+                class="inline w-5 h-5 mr-2"
+              />
+              React -->
+              <span class="flex items-center">
+                <img
+                  src="assets/icons/React-Light.svg"
+                  class="inline w-5 h-5 mr-2 align-middle"
+                />
+                React
+              </span>
             </button>
-            <button (click)="filterProducts('html')" type="button" 
-                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform"
-                    [class.text-blue-900]="selectedFilter === 'html'"
-                    [class.bg-opacity-50]="selectedFilter === 'html'">
-              HTML
+            <button
+              (click)="filterProducts('html')"
+              type="button"
+              class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 transition-transform duration-500 ease-out transform"
+              [class.text-blue-900]="selectedFilter === 'html'"
+              [class.bg-opacity-50]="selectedFilter === 'html'"
+            >
+              <!-- <img src="assets/icons/HTML.svg" class="inline w-5 h-5 mr-2" />
+              HTML -->
+              <span class="flex items-center">
+                <img
+                  src="assets/icons/HTML.svg"
+                  class="inline w-5 h-5 mr-2 align-middle"
+                />
+                HTML
+              </span>
             </button>
-            <button (click)="filterProducts('vue.js')" type="button" 
-                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform"
-                    [class.text-blue-900]="selectedFilter === 'vue.js'"
-                    [class.bg-opacity-50]="selectedFilter === 'vue.js'">
-              Vue
+            <button
+              (click)="filterProducts('vue.js')"
+              type="button"
+              class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 transition-transform duration-500 ease-out transform"
+              [class.text-blue-900]="selectedFilter === 'vue.js'"
+              [class.bg-opacity-50]="selectedFilter === 'vue.js'"
+            >
+              <!-- <img
+                src="assets/icons/VueJS-Light.svg"
+                class="inline w-5 h-5 mr-2"
+              />
+              Vue -->
+              <span class="flex items-center">
+                <img
+                  src="assets/icons/VueJS-Light.svg"
+                  class="inline w-5 h-5 mr-2 align-middle"
+                />
+                Vue
+              </span>
             </button>
-            <button (click)="filterProducts('svelte')" type="button" 
-                    class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2  transition-transform duration-500 ease-out transform"
-                    [class.text-blue-900]="selectedFilter === 'svelte'"
-                    [class.bg-opacity-50]="selectedFilter === 'svelte'">
-              Svelte
+            <button
+              (click)="filterProducts('svelte')"
+              type="button"
+              class="px-5 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 transition-transform duration-500 ease-out transform"
+              [class.text-blue-900]="selectedFilter === 'svelte'"
+              [class.bg-opacity-50]="selectedFilter === 'svelte'"
+            >
+              <span class="flex items-center">
+                <img
+                  src="assets/icons/Svelte.svg"
+                  class="inline w-5 h-5 mr-2 align-middle"
+                />
+                Svelte
+              </span>
             </button>
           </div>
         </div>
-    
+
         <!-- Search bar -->
-        <input 
-          type="text" 
-          [(ngModel)]="searchQuery" 
-          (ngModelChange)="filterSearchProducts()" 
-          placeholder="Search portfolios..." 
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          (ngModelChange)="filterSearchProducts()"
+          placeholder="Search portfolios..."
           class="px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700"
         />
-        
+
         <!-- Upload unAuthenticated text -->
-        <p *ngIf="!(isAuthenticated$ | async)" class="text-gray-300 bg-teal-800 px-4 py-2 rounded-lg shadow-md text-center font-semibold tracking-wide animate-pulse hover:bg-teal-700 transition-colors duration-300 ease-in-out">
+        <p
+          *ngIf="!(isAuthenticated$ | async)"
+          class="text-gray-300 bg-teal-800 px-4 py-2 rounded-lg shadow-md text-center font-semibold tracking-wide animate-pulse hover:bg-teal-700 transition-colors duration-300 ease-in-out"
+        >
           SignUp/Login to Upload
         </p>
-        
+
         <!-- Upload button -->
-        <button 
-          *ngIf="(isAuthenticated$|async)"
+        <button
+          *ngIf="isAuthenticated$ | async"
           (click)="uploadWarning()"
-          routerLink="/upload" 
-          class="flex items-center px-4 py-2 bg-teal-800 text-white font-semibold rounded-lg shadow-xl hover:from-green-600 hover:to-teal-700 transition-transform duration-300 ease-in-out transform hover:scale-95">
+          routerLink="/upload"
+          class="flex items-center px-4 py-2 bg-teal-800 text-white font-semibold rounded-lg shadow-xl hover:from-green-600 hover:to-teal-700 transition-transform duration-300 ease-in-out transform hover:scale-95"
+        >
           <!-- Plus Icon -->
-          <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          <svg
+            class="w-6 h-6 mr-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 4v16m8-8H4"
+            ></path>
           </svg>
           <span class="text-lg">Upload</span>
         </button>
@@ -86,52 +164,75 @@
     <!-- Content for templates -->
     <div class="max-w-8xl mx-auto fade-in">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div *ngFor="let product of displayedProducts" 
-             class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl" 
-             (click)="openModal(product)">
-          <img [src]="product.imageUrl" [alt]="product.name" class="w-full h-48 object-cover">
+        <div
+          *ngFor="let product of displayedProducts"
+          class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+          (click)="openModal(product)"
+        >
+          <img
+            [src]="product.imageUrl"
+            [alt]="product.name"
+            class="w-full h-48 object-cover"
+          />
           <div class="p-4">
-            <h2 class="text-2xl font-bold text-gray-200 mb-2">{{ product.name }}</h2>
+            <h2 class="text-2xl font-bold text-gray-200 mb-2">
+              {{ product.name }}
+            </h2>
             <div class="flex flex-wrap gap-2">
-              <span *ngFor="let tech of product.technologies.split(',')" 
-                class="bg-gradient-to-r from-green-800 to-teal-900 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 hover:bg-gradient-to-l">
+              <span
+                *ngFor="let tech of product.technologies.split(',')"
+                class="bg-gradient-to-r from-green-800 to-teal-900 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 hover:bg-gradient-to-l"
+              >
                 {{ tech.trim() }}
               </span>
-
             </div>
-            
           </div>
         </div>
       </div>
-    
-    
 
       <!-- Pagination Controls -->
       <div class="flex justify-center mt-8 space-x-2">
         <!-- Previous Page Button -->
-        <button (click)="goToPreviousPage()" [disabled]="currentPage === 1" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-l-lg border border-gray-400 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform duration-300 ease-in-out transform hover:scale-105" [class.opacity-50]="currentPage === 1">
+        <button
+          (click)="goToPreviousPage()"
+          [disabled]="currentPage === 1"
+          class="px-4 py-2 bg-gray-300 text-gray-700 rounded-l-lg border border-gray-400 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform duration-300 ease-in-out transform hover:scale-105"
+          [class.opacity-50]="currentPage === 1"
+        >
           Prev
         </button>
-        
+
         <!-- Page Numbers -->
-        <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
-          <button (click)="goToPage(i + 1)" 
-                  [class.bg-blue-500]="currentPage === (i + 1)" 
-                  [class.text-white]="currentPage === (i + 1)" 
-                  [class.border]="currentPage !== (i + 1)"
-                  class="px-4 py-2 border border-gray-400 rounded-md mx-1 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform duration-300 ease-in-out transform hover:scale-105">
+        <ng-container
+          *ngFor="let page of [].constructor(totalPages); let i = index"
+        >
+          <button
+            (click)="goToPage(i + 1)"
+            [class.bg-blue-500]="currentPage === i + 1"
+            [class.text-white]="currentPage === i + 1"
+            [class.border]="currentPage !== i + 1"
+            class="px-4 py-2 border border-gray-400 rounded-md mx-1 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform duration-300 ease-in-out transform hover:scale-105"
+          >
             {{ i + 1 }}
           </button>
         </ng-container>
-        
+
         <!-- Next Page Button -->
-        <button (click)="goToNextPage()" [disabled]="currentPage === totalPages" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-r-lg border border-gray-400 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform duration-300 ease-in-out transform hover:scale-105" [class.opacity-50]="currentPage === totalPages">
+        <button
+          (click)="goToNextPage()"
+          [disabled]="currentPage === totalPages"
+          class="px-4 py-2 bg-gray-300 text-gray-700 rounded-r-lg border border-gray-400 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform duration-300 ease-in-out transform hover:scale-105"
+          [class.opacity-50]="currentPage === totalPages"
+        >
           Next
         </button>
       </div>
     </div>
 
     <!-- Product Modal -->
-    <app-details [product]="selectedProduct" (close)="closeModal()"></app-details>
+    <app-details
+      [product]="selectedProduct"
+      (close)="closeModal()"
+    ></app-details>
   </div>
 </div>
